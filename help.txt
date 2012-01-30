@@ -1,9 +1,9 @@
 h1. rah_external_output
 
-p. Output external content-type snippets. The plugin, rah_external_output, is used to output external scripts with custom content types. By external we mean that you don't have to waste sections, forms nor page templates for the scripts, and scripts (aka _global output forms_) can be easily used for other applications, for example Ajax calls or a custom XML page.
+p. Output external content-type snippets. The plugin, rah_external_output, is used to output external scripts with custom content types. By external we mean that you don't have to waste sections, forms nor page templates for the scripts, and scripts (aka _global output forms_) can be easily used for other applications, for example ajax calls or a custom XML page.
 
-* Version: 0.7
-* Updated: 2011/06/12 12:25 AM UTC
+* Version: 0.8
+* Updated: 2011/07/26 11:55 AM UTC
 
 h3. Table of Contents
 
@@ -23,11 +23,7 @@ h3(#requirements). Requirements
 
 p. Rah_external_output's minimum requirements:
 
-* Textpattern 4.2.0+
-
-p. Recommended:
-
-* Textpattern 4.4.0 or newer.
+* Textpattern 4.4.1+
 
 h3(#installation-and-usage). Installation and usage
 
@@ -42,6 +38,14 @@ Name of the external output you want to display.
 Default @name=""@ Example: @"LoginShowToExtSiteScript"@
 
 h3(#changelog). Changelog
+
+p. *Version 0.8*
+
+* Added: CSRF (session riding) protection using Textpattern's core functions introduced in v4.4.1.
+* Changed: Make sure the plugin interfaces is all in one language.
+* Changed: Only try to drop old database tables when humanly possible that there is old leftovers. Don't run queries when updating from clean to clean.
+* Changed: set temporary version number when installing. Removes the possibility of running the installer twice for no reason.
+* Now requires Textpattern version 4.4.1 or newer.
 
 p. *Version 0.7*
 

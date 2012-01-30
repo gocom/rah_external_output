@@ -1,7 +1,7 @@
 <?php	##################
 	#
 	#	Rah_external_output-plugin for Textpattern
-	#	version 0.7
+	#	version 0.8
 	#	by Jukka Svahn
 	#	http://rahforum.biz
 	#
@@ -14,7 +14,7 @@
 	if(@txpinterface == 'admin') {
 		add_privs('rah_external_output','1,2');
 		add_privs('plugin_prefs.rah_external_output','1,2');
-		register_tab('extensions','rah_external_output',gTxt('rah_external_output') == 'rah_external_output' ? 'External output' : gTxt('rah_external_output'));
+		register_tab('extensions','rah_external_output',gTxt('rah_external_output') == 'rah_external_output' ? 'External Output' : gTxt('rah_external_output'));
 		register_callback('rah_external_output_page','rah_external_output');
 		register_callback('rah_external_output_head','admin_side','head_end');
 		register_callback('rah_external_output_prefs','plugin_prefs.rah_external_output');
@@ -58,11 +58,16 @@
 		
 		foreach(
 			array(
-				'rah_external_output' => 'External output',
+				'rah_external_output' => 'External Output',
 				'rah_external_output_name_taken' => 'The name is already taken. Please choose other name.',
 				'rah_external_output_start' => 'Start by creating your first snippet.',
 				'rah_external_output_no_items' => 'No snippets created yet.',
+				'rah_external_output_name' => 'Name',
 				'rah_external_output_content_type' => 'Content-Type',
+				'rah_external_output_posted' => 'Updated',
+				'rah_external_output_status' => 'Status',
+				'rah_external_output_view' => 'View',
+				'rah_external_output_active' => 'Active',
 				'rah_external_output_select_something' => 'Select something before continuing.',
 				'rah_external_output_snippets_removed' => 'Selected snippets removed.',
 				'rah_external_output_snippets_activated' => 'Selected snippets activated.',
@@ -79,22 +84,27 @@
 				'rah_external_output_with_selected' => 'With selected...',
 				'rah_external_output_activate' => 'Activate',
 				'rah_external_output_disable' => 'Disable',
+				'rah_external_output_delete' => 'Delete',
+				'rah_external_output_save' => 'Save',
 				'rah_external_output_error_saving' => 'Database error occured while saving.'
 			) as $string => $translation
 		)
 			if(!isset($textarray[$string]))
 				$textarray[$string] = $translation;
+			
+		$version = '0.8';
 	
-		$version = 
+		$current = 
 			isset($prefs['rah_external_output_version']) ? 
-				$prefs['rah_external_output_version'] : 'base' ;
+				$prefs['rah_external_output_version'] : 'base';
 		
-		if($version == '0.7')
+		if($current == $version)
 			return;
 		
-		@safe_query(
-			'DROP TABLE IF EXISTS '.safe_pfx('rah_external_output_mime')
-		);
+		if($current == 'base')
+			@safe_query(
+				'DROP TABLE IF EXISTS '.safe_pfx('rah_external_output_mime')
+			);
 		
 		/*
 			Stores snippets.
@@ -121,7 +131,8 @@
 			Set version
 		*/
 		
-		set_pref('rah_external_output_version','0.7','rah_exo',2,'',0);
+		set_pref('rah_external_output_version',$version,'rah_exo',2,'',0);
+		$prefs['rah_external_output_version'] = $version;
 	}
 
 /**
@@ -185,18 +196,22 @@
 		rah_external_output_install();
 		
 		global $step;
-		$func = 'rah_external_output_' . $step;
 		
-		if(in_array($step,array(
-			'edit',
-			'save',
-			'activate',
-			'disable',
-			'delete'
-		)))
-			$func();
-		else
-			rah_external_output_list();
+		$steps = 
+			array(
+				'list' => false,
+				'edit' => false,
+				'save' => true,
+				'activate' => true,
+				'disable' => true,
+				'delete' => true
+			);
+		
+		if(!$step || !bouncer($step, $steps))
+			$step = 'list';
+		
+		$func = 'rah_external_output_' . $step;
+		$func();
 	}
 
 /**
@@ -220,11 +235,11 @@
 			'	<table id="list" class="list" cellspacing="0" cellpadding="0">'.n.
 			'		<thead>'.n.
 			'			<tr>'.n.
-			'				<th>'.gTxt('name').'</th>'.n.
+			'				<th>'.gTxt('rah_external_output_name').'</th>'.n.
 			'				<th>'.gTxt('rah_external_output_content_type').'</th>'.n.
-			'				<th>'.gTxt('updated').'</th>'.n.
-			'				<th>'.gTxt('status').'</th>'.n.
-			'				<th>'.gTxt('view').'</th>'.n.
+			'				<th>'.gTxt('rah_external_output_posted').'</th>'.n.
+			'				<th>'.gTxt('rah_external_output_status').'</th>'.n.
+			'				<th>'.gTxt('rah_external_output_view').'</th>'.n.
 			'				<th>&#160;</th>'.n.
 			'			</tr>'.n.
 			'		</thead>'.n.
@@ -239,8 +254,8 @@
 					'				<td><a href="?event='.$event.'&amp;step=edit&amp;name='.htmlspecialchars($name).'">'.htmlspecialchars($name).'</a></td>'.n.
 					'				<td>'.(trim($content_type) ? htmlspecialchars($content_type) : '&#160;').'</td>'.n.
 					'				<td>'.safe_strftime('%b %d %Y %H:%M:%S',strtotime($posted)).'</td>'.n.
-					'				<td>'.($allow == 'Yes' ? gTxt('active') :  gTxt('rah_external_output_disabled')).'</td>'.n.
-					'				<td>'.($allow == 'Yes' ? '<a href="'.hu.'?rah_external_output='.htmlspecialchars($name).'">'.gTxt('view').'</a>' : '&#160;').'</td>'.n.
+					'				<td>'.($allow == 'Yes' ? gTxt('rah_external_output_active') :  gTxt('rah_external_output_disabled')).'</td>'.n.
+					'				<td>'.($allow == 'Yes' ? '<a href="'.hu.'?rah_external_output='.htmlspecialchars($name).'">'.gTxt('rah_external_output_view').'</a>' : '&#160;').'</td>'.n.
 					'				<td><input type="checkbox" name="selected[]" value="'.htmlspecialchars($name).'" /></td>'.n.
 					'			</tr>'.n;
 			}
@@ -260,7 +275,7 @@
 			'			<option value="">'.gTxt('rah_external_output_with_selected').'</option>'.n.
 			'			<option value="activate">'.gTxt('rah_external_output_activate').'</option>'.n.
 			'			<option value="disable">'.gTxt('rah_external_output_disable').'</option>'.n.
-			'			<option value="delete">'.gTxt('delete').'</option>'.n.
+			'			<option value="delete">'.gTxt('rah_external_output_delete').'</option>'.n.
 			'		</select>'.n.
 			'		<input type="submit" class="smallerbox" value="'.gTxt('go').'" />'.n.
 			'	</p>'.n;
@@ -377,7 +392,7 @@
 			
 			'		<p>'.n.
 			'			<label>'.n.
-			'				'.gTxt('name').'<br />'.n.
+			'				'.gTxt('rah_external_output_name').'<br />'.n.
 			'				<input type="text" name="name" class="edit" value="'.htmlspecialchars($name).'" />'.n.
 			'			</label>'.n.
 			'		</p>'.n.
@@ -398,16 +413,16 @@
 			
 			'		<p>'.n.
 			'			<label>'.n.
-			'				'.gTxt('status').'<br />'.n.
+			'				'.gTxt('rah_external_output_status').'<br />'.n.
 			'				<select name="allow">'.n.
-			'					<option value="Yes"'.($allow == 'Yes' ? ' selected="selected"' : '').'>'.gTxt('active').'</option>'.n.
+			'					<option value="Yes"'.($allow == 'Yes' ? ' selected="selected"' : '').'>'.gTxt('rah_external_output_active').'</option>'.n.
 			'					<option value="No"'.($allow == 'No' ? ' selected="selected"' : '').'>'.gTxt('rah_external_output_disabled').'</option>'.n.
 			'				</select>'.n.
 			'			</label>'.n.
 			'		</p>'.n.
 			
 			'		<p class="rah_ui_save">'.n.
-			'			<input type="submit" value="'.gTxt('save').'" class="publish" />'.n.
+			'			<input type="submit" value="'.gTxt('rah_external_output_save').'" class="publish" />'.n.
 			'		</p>'.n;
 		
 		rah_external_ouput_header($out,'rah_external_output',$message);
@@ -521,6 +536,7 @@
 			n.
 			'<form method="post" action="index.php" id="rah_external_output_container" class="rah_ui_container">'.n.
 			'	<input type="hidden" name="event" value="'.$event.'" />'.n.
+			'	<input type="hidden" name="_txp_token" value="'.form_token().'" />'.n.
 			'	<p id="rah_external_output_nav" class="rah_ui_nav">'.
 				($step == 'edit' || $step == 'save' ? 
 					' <span class="rah_ui_sep">&#187;</span> <a href="?event='.$event.'">'.gTxt('rah_external_output_nav_main').'</a>' : ''
