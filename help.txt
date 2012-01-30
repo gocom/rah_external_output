@@ -1,0 +1,63 @@
+h1. rah_external_output
+
+p. Output external content-type snippets. The plugin, rah_external_output, is used to output external scripts with custom content types. By external we mean that you don't have to waste sections, forms nor page templates for the scripts, and scripts (aka _global output forms_) can be easily used for other applications, for example Ajax calls or a custom XML page.
+
+* Version: 0.4
+* Updated: 2009/06/08 8:10 AM GMT+3
+
+h3. Table of Contents
+
+* "List of features":#list-of-features
+* "Requirements":#requirements
+* "Installation and usage":#installation-and-usage
+* "Attributes":#attributes
+* "Changelog":#changelog
+
+h3(#list-of-features). List of features
+
+* Clean interface to write and adjust code snippets.
+* Create and set content-types for the code snippets.
+* Two ways to display the scripts: An automatic URL call, and an alternative tag function to display the end results.
+
+h3(#requirements). Requirements
+
+p. Rah_external_output's minimum requirements:
+
+* PHP 4.3.0
+* Textpattern 4.x.x+
+
+p. Recommended:
+
+* PHP 5.1.2+
+* Textpattern 4.0.8+
+
+h3(#installation-and-usage). Installation and usage
+
+p. The general behavior stands: paste plugin code to the plugin installer textarea and run the automatic setup. Then just activate the plugin and you are ready to use the new interface under _TXP / Extensions / External output_.
+
+h3(#attributes). Attributes
+
+p. The tag is @<txp:rah_external_output />@ and attributes for it follow. The tag is a secondary feature, and the automatic URL call method should be preferred over the tag.
+
+p. *name*
+Name of the external output you want to display.
+Default @name=""@ Example: @"LoginShowToExtSiteScript"@
+
+h3(#changelog). Changelog
+
+p. *Version 0.4*
+
+* Fixed forgotten insert query escaping.
+
+p. *Version 0.3*
+
+* Fixed error caused by non-set @$pretext@ (note: TXP load order).
+* Set @$pretext@ indexes to empty: we are not on page template.
+
+p. *Version 0.2*
+
+* Fixed forgotten parse call.
+
+p. *Version 0.1*
+
+* First release
