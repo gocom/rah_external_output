@@ -2,8 +2,8 @@ h1. rah_external_output
 
 p. Output external content-type snippets. The plugin, rah_external_output, is used to output external scripts with custom content types. By external we mean that you don't have to waste sections, forms nor page templates for the scripts, and scripts (aka _global output forms_) can be easily used for other applications, for example ajax calls or a custom XML page.
 
-* Version: 0.8
-* Updated: 2011/07/26 11:55 AM UTC
+* Version: 0.9
+* Updated: 2011/09/03 7:15 AM UTC
 
 h3. Table of Contents
 
@@ -38,6 +38,12 @@ Name of the external output you want to display.
 Default @name=""@ Example: @"LoginShowToExtSiteScript"@
 
 h3(#changelog). Changelog
+
+p. *Version 0.9*
+
+* Fixed: now handles raw PHP tags.
+* Changed: now parses tag structure in same fashion as core. Do it twice. Provides identical results with core in every scenario.
+* Added: ability to display tag trace, and error reporting, by adding @rah_external_output_trace@ parameter (@&rah_external_output_trace=1@) to the snippet URL when site's production status is set to _debugging_.
 
 p. *Version 0.8*
 

@@ -1,7 +1,7 @@
 <?php	##################
 	#
 	#	Rah_external_output-plugin for Textpattern
-	#	version 0.8
+	#	version 0.9
 	#	by Jukka Svahn
 	#	http://rahforum.biz
 	#
@@ -92,7 +92,7 @@
 			if(!isset($textarray[$string]))
 				$textarray[$string] = $translation;
 			
-		$version = '0.8';
+		$version = '0.9';
 	
 		$current = 
 			isset($prefs['rah_external_output_version']) ? 
@@ -136,7 +136,7 @@
 	}
 
 /**
-	Tag for returning external output
+	Tag for returning snippets.
 */
 
 	function rah_external_output($atts) {
@@ -156,7 +156,7 @@
 	}
 
 /**
-	Outputs external outputs.
+	Outputs external snippets.
 */
 
 	function rah_external_output_do() {
@@ -180,10 +180,41 @@
 		ob_start();
 		ob_end_clean();
 		
+		global $pretext, $microstart, $prefs, $qcount, $qtime, $production_status, $txptrace, $siteurl;
+		
+		txp_status_header('200 OK');
+		
 		if($content_type)
 			header('Content-type: '.$content_type);
 		
-		echo @parse($code);
+		trace_add('['.gTxt('page').': '.$pretext['page'].']');
+		set_error_handler('tagErrorHandler');
+		$pretext['secondpass'] = false;
+		$html = parse($code);
+		$pretext['secondpass'] = true;
+		trace_add('[ ~~~ '.gTxt('secondpass').' ~~~ ]');
+		$html = parse($html);
+
+		if($prefs['allow_page_php_scripting'])
+			$html = evalString($html);
+		
+		restore_error_handler();
+		
+		echo $html;
+		
+		if(gps('rah_external_output_trace') && in_array($production_status, array('debug', 'testing'))) {
+			$microdiff = (getmicrotime() - $microstart);
+			
+			echo 
+				n.comment('Runtime:    '.substr($microdiff,0,6)).
+				n.comment('Query time: '.sprintf('%02.6f', $qtime)).
+				n.comment('Queries: '.$qcount).
+				maxMemUsage('end of textpattern()',1);
+			
+			if(!empty($txptrace) and is_array($txptrace))
+				echo n.comment('txp tag trace: '.n.str_replace('--','&shy;&shy;',join(n, $txptrace)).n);
+		}
+
 		exit();
 	}
 
