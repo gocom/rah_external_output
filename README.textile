@@ -2,23 +2,23 @@ h1. rah_external_output
 
 p. Output external content-type snippets. The plugin, rah_external_output, is used to output external scripts with custom content types. By external we mean that you don't have to waste sections, forms nor page templates for the scripts, and scripts (aka _global output forms_) can be easily used for other applications, for example ajax calls or a custom XML page.
 
-h2(#list-of-features). List of features
+h2. List of features
 
 * Clean interface to write and adjust code snippets.
 * Create and set content-types for the code snippets.
 * Two ways to display the scripts: An automatic URL call, and an alternative tag function to display the end results.
 
-h2(#requirements). Requirements
+h2. Requirements
 
 p. Rah_external_output's minimum requirements:
 
 * Textpattern 4.4.1+
 
-h3(#installation-and-usage). Installation and usage
+h2(#installation-and-usage). Installation and usage
 
 p. The general behavior stands: paste plugin code to the plugin installer textarea and run the automatic setup. Then just activate the plugin and you are ready to use the new interface under _TXP / Extensions / External output_.
 
-h2(#attributes). Attributes
+h2. Attributes
 
 p. The tag is @<txp:rah_external_output />@ and attributes for it follow. The tag is a secondary feature, and the automatic URL call method should be preferred over the tag.
 
@@ -26,7 +26,7 @@ p. *name*
 Name of the external output you want to display.
 Default @name=""@ Example: @"LoginShowToExtSiteScript"@
 
-h2(#changelog). Changelog
+h2. Changelog
 
 h3. Version 0.9 - 2011/09/03
 
