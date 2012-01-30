@@ -2,8 +2,8 @@ h1. rah_external_output
 
 p. Output external content-type snippets. The plugin, rah_external_output, is used to output external scripts with custom content types. By external we mean that you don't have to waste sections, forms nor page templates for the scripts, and scripts (aka _global output forms_) can be easily used for other applications, for example Ajax calls or a custom XML page.
 
-* Version: 0.5
-* Updated: 2010/04/11 5:20 PM UTC
+* Version: 0.6
+* Updated: 2011/04/15 2:25 AM UTC
 
 h3. Table of Contents
 
@@ -24,12 +24,11 @@ h3(#requirements). Requirements
 p. Rah_external_output's minimum requirements:
 
 * PHP 4.3.0
-* Textpattern 4.x.x+
+* Textpattern 4.0.7 or newer. TXP v4.2.0 is required for full feature support, 4.0.7 doesn't support some minor things.
 
 p. Recommended:
 
-* PHP 5.1.2+
-* Textpattern 4.0.8+
+* Textpattern 4.4.0 or newer.
 
 h3(#installation-and-usage). Installation and usage
 
@@ -44,6 +43,20 @@ Name of the external output you want to display.
 Default @name=""@ Example: @"LoginShowToExtSiteScript"@
 
 h3(#changelog). Changelog
+
+p. *Version 0.6*
+
+* Fixed: Saving snippets while changing name.
+* Fixed: Now remember the sent data in the editor if error occurs instead of fetching the old data from database.
+* Added: Translation support. Interface now uses language strings.
+* Added: @<txp:rah_external_output />@ tag now caches fetched results.
+* Added: Now uses plugin_lifecycle callbacks, and includes uninstaller.
+* Added: Adds an options link to the Plugins pane which directs to the plugin's admin-interface.
+* Removed: Mime-interface. Was confusing and not so many used it. Trying to simplify the user interface.
+* Changed: The user-interface and markup. Removed heading, removed inline styles, added @<tbody>@ and @<thead>@ tags to the tables.
+* Changed: Now uses new, improved multi-selection/edit feature, seen in other rah-plugins.
+* Changed: now uses @textpattern@ callback instead of outputting the snippets right away when the plugin is loaded.
+* Changed: Now checks if the saving/updating succeeds, instead of expecting.
 
 p. *Version 0.5*
 
