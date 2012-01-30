@@ -1,15 +1,19 @@
-<?php	##################
-	#
-	#	Rah_external_output-plugin for Textpattern
-	#	version 1.0
-	#	by Jukka Svahn
-	#	http://rahforum.biz
-	#
-	#	Copyright (C) 2011 Jukka Svahn <http://rahforum.biz>
-	#	Licensed under GNU Genral Public License version 2
-	#	http://www.gnu.org/licenses/gpl-2.0.html
-	#
-	##################
+<?php
+
+/**
+ * Rah_external_output plugin for Textpattern CMS
+ *
+ * @author Jukka Svahn
+ * @date 2009-
+ * @license GNU GPLv2
+ * @link http://rahforum.biz/plugins/rah_default_category
+ *
+ * Requires Textpattern v4.4.1 or newer.
+ *
+ * Copyright (C) 2012 Jukka Svahn <http://rahforum.biz>
+ * Licensed under GNU Genral Public License version 2
+ * http://www.gnu.org/licenses/gpl-2.0.html
+ */
 
 	if(@txpinterface == 'admin') {
 		add_privs('rah_external_output','1,2');
@@ -24,10 +28,10 @@
 		register_callback('rah_external_output_do','textpattern');
 
 /**
-	The unified installer and uninstaller
-	@param $event string Admin-side event.
-	@param $step string Admin-side, plugin-lifecycle step.
-*/
+ * The unified installer and uninstaller
+ * @param string $event Admin-side event.
+ * @param string $step Admin-side, plugin-lifecycle step.
+ */
 
 	function rah_external_output_install($event='',$step='') {
 		
@@ -127,17 +131,15 @@
 			) PACK_KEYS=1 AUTO_INCREMENT=1 CHARSET=utf8"
 		);
 		
-		/*
-			Set version
-		*/
-		
 		set_pref('rah_external_output_version',$version,'rah_exo',2,'',0);
 		$prefs['rah_external_output_version'] = $version;
 	}
 
 /**
-	Tag for returning snippets.
-*/
+ * Tag for returning snippets.
+ * @param array $atts
+ * @return string
+ */
 
 	function rah_external_output($atts) {
 		
@@ -156,8 +158,8 @@
 	}
 
 /**
-	Outputs external snippets.
-*/
+ * Outputs external snippets.
+ */
 
 	function rah_external_output_do() {
 		
@@ -218,8 +220,8 @@
 	}
 
 /**
-	Delivers panes.
-*/
+ * Delivers panes.
+ */
 
 	function rah_external_output_page() {
 		require_privs('rah_external_output');
@@ -245,9 +247,9 @@
 	}
 
 /**
-	The main pane. Lists snippets
-	@param $message string The message shown by Textpattern.
-*/
+ * The main pane. Lists snippets
+ * @param string $message The message shown by Textpattern.
+ */
 
 	function rah_external_output_list($message='') {
 		
@@ -314,8 +316,8 @@
 	}
 
 /**
-	Deletes array of snippets
-*/
+ * Deletes array of snippets
+ */
 
 	function rah_external_output_delete() {
 		
@@ -338,9 +340,9 @@
 	}
 
 /**
-	Activates selected array of snippets.
-	@param $state string The new status.
-*/
+ * Activates selected array of snippets.
+ * @param string $state The new status.
+ */
 
 	function rah_external_output_activate($state='Yes') {
 		$selected = ps('selected');
@@ -365,18 +367,18 @@
 	}
 
 /**
-	Disables array of snippets.
-*/
+ * Disables array of snippets.
+ */
 
 	function rah_external_output_disable() {
 		rah_external_output_activate('No');
 	}
 
 /**
-	Pane for editing snippets.
-	@param $message string The message shown by Textpattern.
-	@param $newname string The snippet's new name, if changed.
-*/
+ * Pane for editing snippets.
+ * @param string $message The message shown by Textpattern.
+ * @param string $newname The snippet's new name, if changed.
+ */
 
 	function rah_external_output_edit($message='',$newname='') {
 		
@@ -459,8 +461,8 @@
 	}
 
 /**
-	Saves snippet
-*/
+ * Saves snippet
+ */
 
 	function rah_external_output_save() {
 		
@@ -544,11 +546,11 @@
 	}
 
 /**
-	Outputs the panes
-	@param $out mixed Pane's HTML markup.
-	@param $pagetop Page's title.
-	@param $message The message shown by Textpattern.
-*/
+ * Outputs the panes
+ * @param mixed $out Pane's HTML markup.
+ * @param string $pagetop Page's title.
+ * @param string $message The message shown by Textpattern.
+ */
 
 	function rah_external_ouput_header($out,$pagetop,$message) {
 		
@@ -578,8 +580,8 @@
 	}
 
 /**
-	Adds styles and JavaScript to <head>
-*/
+ * Adds styles and JavaScript to <head>
+ */
 
 	function rah_external_output_head() {
 		global $event;
@@ -676,8 +678,8 @@ EOF;
 	}
 
 /**
-	Redirect to the admin-side interface
-*/
+ * Redirect to the admin-side interface
+ */
 
 	function rah_external_output_prefs() {
 		header('Location: ?event=rah_external_output');
