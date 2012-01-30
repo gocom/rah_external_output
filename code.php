@@ -1,7 +1,7 @@
 <?php	##################
 	#
 	#	Rah_external_output-plugin for Textpattern
-	#	version 0.9
+	#	version 1.0
 	#	by Jukka Svahn
 	#	http://rahforum.biz
 	#
@@ -92,7 +92,7 @@
 			if(!isset($textarray[$string]))
 				$textarray[$string] = $translation;
 			
-		$version = '0.9';
+		$version = '1.0';
 	
 		$current = 
 			isset($prefs['rah_external_output_version']) ? 
@@ -186,8 +186,7 @@
 		
 		if($content_type)
 			header('Content-type: '.$content_type);
-		
-		trace_add('['.gTxt('page').': '.$pretext['page'].']');
+
 		set_error_handler('tagErrorHandler');
 		$pretext['secondpass'] = false;
 		$html = parse($code);
