@@ -1,19 +1,20 @@
-<?php
-/**
-	Rah_external_output v0.6
-	Plugin for Textpattern
-	by Jukka Svahn
-	http://rahforum.biz
-
-	Copyright (C) 2011 Jukka Svahn <http://rahforum.biz>
-	Licensed under GNU Genral Public License version 2
-	http://www.gnu.org/licenses/gpl-2.0.html
-*/
+<?php	##################
+	#
+	#	Rah_external_output-plugin for Textpattern
+	#	version 0.7
+	#	by Jukka Svahn
+	#	http://rahforum.biz
+	#
+	#	Copyright (C) 2011 Jukka Svahn <http://rahforum.biz>
+	#	Licensed under GNU Genral Public License version 2
+	#	http://www.gnu.org/licenses/gpl-2.0.html
+	#
+	##################
 
 	if(@txpinterface == 'admin') {
 		add_privs('rah_external_output','1,2');
 		add_privs('plugin_prefs.rah_external_output','1,2');
-		register_tab('extensions','rah_external_output','External output');
+		register_tab('extensions','rah_external_output',gTxt('rah_external_output') == 'rah_external_output' ? 'External output' : gTxt('rah_external_output'));
 		register_callback('rah_external_output_page','rah_external_output');
 		register_callback('rah_external_output_head','admin_side','head_end');
 		register_callback('rah_external_output_prefs','plugin_prefs.rah_external_output');
@@ -24,6 +25,8 @@
 
 /**
 	The unified installer and uninstaller
+	@param $event string Admin-side event.
+	@param $step string Admin-side, plugin-lifecycle step.
 */
 
 	function rah_external_output_install($event='',$step='') {
@@ -86,7 +89,7 @@
 			isset($prefs['rah_external_output_version']) ? 
 				$prefs['rah_external_output_version'] : 'base' ;
 		
-		if($version == '0.6')
+		if($version == '0.7')
 			return;
 		
 		@safe_query(
@@ -100,7 +103,7 @@
 			* content_type: Content type of the snippet.
 			* code: The code/markup.
 			* posted: Date posted.
-			* allow: Status. Tells if disabled or active.
+			* allow: Status. Tells if the snippet is disabled or active.
 		*/	
 		
 		safe_query(
@@ -118,7 +121,7 @@
 			Set version
 		*/
 		
-		set_pref('rah_external_output_version','0.6','rah_exo',2,'',0);
+		set_pref('rah_external_output_version','0.7','rah_exo',2,'',0);
 	}
 
 /**
@@ -133,14 +136,12 @@
 		
 		global $rah_external_output;
 		
-		if(!isset($rah_external_output[$name]))
+		if(isset($rah_external_output[$name]))
 			return parse($rah_external_output[$name]);
 		
 		$code = fetch('code','rah_external_output','name',$name);
-		if($code) {
-			$rah_external_output[$name] = $code;
-			return parse($code);
-		}
+		$rah_external_output[$name] = $code;
+		return parse($code);
 	}
 
 /**
@@ -200,6 +201,7 @@
 
 /**
 	The main pane. Lists snippets
+	@param $message string The message shown by Textpattern.
 */
 
 	function rah_external_output_list($message='') {
@@ -216,9 +218,7 @@
 		$out[] =
 			
 			'	<table id="list" class="list" cellspacing="0" cellpadding="0">'.n.
-			
 			'		<thead>'.n.
-			
 			'			<tr>'.n.
 			'				<th>'.gTxt('name').'</th>'.n.
 			'				<th>'.gTxt('rah_external_output_content_type').'</th>'.n.
@@ -227,7 +227,7 @@
 			'				<th>'.gTxt('view').'</th>'.n.
 			'				<th>&#160;</th>'.n.
 			'			</tr>'.n.
-			
+			'		</thead>'.n.
 			'		<tbody>'.n;
 			
 		if($rs) {
@@ -265,7 +265,7 @@
 			'		<input type="submit" class="smallerbox" value="'.gTxt('go').'" />'.n.
 			'	</p>'.n;
 			
-		rah_external_ouput_header($out,'External output',$message);
+		rah_external_ouput_header($out,'rah_external_output',$message);
 	}
 
 /**
@@ -294,6 +294,7 @@
 
 /**
 	Activates selected array of snippets.
+	@param $state string The new status.
 */
 
 	function rah_external_output_activate($state='Yes') {
@@ -328,6 +329,8 @@
 
 /**
 	Pane for editing snippets.
+	@param $message string The message shown by Textpattern.
+	@param $newname string The snippet's new name, if changed.
 */
 
 	function rah_external_output_edit($message='',$newname='') {
@@ -407,7 +410,7 @@
 			'			<input type="submit" value="'.gTxt('save').'" class="publish" />'.n.
 			'		</p>'.n;
 		
-		rah_external_ouput_header($out,'External output',$message);
+		rah_external_ouput_header($out,'rah_external_output',$message);
 	}
 
 /**
@@ -497,6 +500,9 @@
 
 /**
 	Outputs the panes
+	@param $out mixed Pane's HTML markup.
+	@param $pagetop Page's title.
+	@param $message The message shown by Textpattern.
 */
 
 	function rah_external_ouput_header($out,$pagetop,$message) {
@@ -506,7 +512,7 @@
 		if($message)
 			$message = gTxt($message);
 		
-		pagetop($pagetop,$message);
+		pagetop(gTxt($pagetop),$message);
 		
 		if(is_array($out))
 			$out = implode('',$out);
@@ -540,6 +546,7 @@
 		echo 
 			<<<EOF
 			<script type="text/javascript">
+				<!--
 				function rah_external_output_stepper() {
 					if($('#rah_external_output_step').length < 1)
 						return;
@@ -598,6 +605,7 @@
 				$(document).ready(function(){
 					rah_external_output_stepper();
 				});
+				-->
 			</script>
 			<style type="text/css">
 				#rah_external_output_container {
