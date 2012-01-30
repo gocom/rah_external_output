@@ -16,16 +16,16 @@
  */
 
 	if(@txpinterface == 'admin') {
-		add_privs('rah_external_output','1,2');
-		add_privs('plugin_prefs.rah_external_output','1,2');
-		register_tab('extensions','rah_external_output',gTxt('rah_external_output') == 'rah_external_output' ? 'External Output' : gTxt('rah_external_output'));
-		register_callback('rah_external_output_page','rah_external_output');
-		register_callback('rah_external_output_head','admin_side','head_end');
-		register_callback('rah_external_output_prefs','plugin_prefs.rah_external_output');
-		register_callback('rah_external_output_install','plugin_lifecycle.rah_external_output');
+		add_privs('rah_external_output', '1,2');
+		add_privs('plugin_prefs.rah_external_output', '1,2');
+		register_tab('extensions', 'rah_external_output', gTxt('rah_external_output'));
+		register_callback('rah_external_output_page', 'rah_external_output');
+		register_callback('rah_external_output_head', 'admin_side', 'head_end');
+		register_callback('rah_external_output_prefs', 'plugin_prefs.rah_external_output');
+		register_callback('rah_external_output_install', 'plugin_lifecycle.rah_external_output');
 	}
 	else
-		register_callback('rah_external_output_do','textpattern');
+		register_callback('rah_external_output_do', 'textpattern');
 
 /**
  * The unified installer and uninstaller
@@ -33,14 +33,9 @@
  * @param string $step Admin-side, plugin-lifecycle step.
  */
 
-	function rah_external_output_install($event='',$step='') {
+	function rah_external_output_install($event='', $step='') {
 		
 		global $prefs;
-		
-		/*
-			Uninstall if uninstalling the
-			plugin
-		*/
 		
 		if($step == 'deleted') {
 			
@@ -340,7 +335,7 @@
  * @param string $newname The snippet's new name, if changed.
  */
 
-	function rah_external_output_edit($message='',$newname='') {
+	function rah_external_output_edit($message='', $newname='') {
 		
 		extract(
 			psa(
@@ -512,7 +507,7 @@
  * @param string $message The message shown by Textpattern.
  */
 
-	function rah_external_ouput_header($out,$pagetop,$message) {
+	function rah_external_ouput_header($out, $pagetop, $message) {
 		
 		global $event, $step;
 		
