@@ -14,7 +14,7 @@ p. Rah_external_output's minimum requirements:
 
 * Textpattern 4.4.1+
 
-h2(#installation-and-usage). Installation and usage
+h2. Installation and usage
 
 p. The general behavior stands: paste plugin code to the plugin installer textarea and run the automatic setup. Then just activate the plugin and you are ready to use the new interface under _TXP / Extensions / External output_.
 
