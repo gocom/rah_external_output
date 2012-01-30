@@ -2,8 +2,8 @@ h1. rah_external_output
 
 p. Output external content-type snippets. The plugin, rah_external_output, is used to output external scripts with custom content types. By external we mean that you don't have to waste sections, forms nor page templates for the scripts, and scripts (aka _global output forms_) can be easily used for other applications, for example Ajax calls or a custom XML page.
 
-* Version: 0.4
-* Updated: 2009/06/08 8:10 AM GMT+3
+* Version: 0.5
+* Updated: 2010/04/11 5:20 PM UTC
 
 h3. Table of Contents
 
@@ -44,6 +44,10 @@ Name of the external output you want to display.
 Default @name=""@ Example: @"LoginShowToExtSiteScript"@
 
 h3(#changelog). Changelog
+
+p. *Version 0.5*
+
+* Added _disable_ and _activate_ actions to multiedit feature.
 
 p. *Version 0.4*
 

@@ -1,7 +1,7 @@
 <?php	##################
 	#
 	#	rah_external_output-plugin for Textpattern
-	#	version 0.4
+	#	version 0.5
 	#	by Jukka Svahn
 	#	http://rahforum.biz
 	#
@@ -90,6 +90,8 @@
 		if(in_array($step,array(
 			'rah_external_output_page_form',
 			'rah_external_output_page_save',
+			'rah_external_output_page_activate',
+			'rah_external_output_page_disable',
 			'rah_external_output_page_delete',
 			'rah_external_output_content_types',
 			'rah_external_output_content_types_save',
@@ -108,6 +110,24 @@
 			);
 		}
 		rah_external_output_page_list('Selection deleted.');
+	}
+
+	function rah_external_output_page_activate($state='Yes') {
+		$selected = ps('selected');
+		if(!is_array($selected))
+			$selected = array();
+		foreach($selected as $name) {
+			safe_update(
+				'rah_external_output',
+				"allow='".doSlash($state)."'",
+				"name='".doSlash($name)."'"
+			);
+		}
+		rah_external_output_page_list('State changed.');
+	}
+	
+	function rah_external_output_page_disable() {
+		rah_external_output_page_activate('No');
 	}
 
 	function rah_external_output_content_types_delete() {
@@ -236,6 +256,8 @@
 			'		<p style="text-align: right">'.n.
 			'			<select name="step">'.n.
 			'				<option value="">With selected...</option>'.n.
+			'				<option value="rah_external_output_page_activate">Activate</option>'.n.
+			'				<option value="rah_external_output_page_disable">Disable</option>'.n.
 			'				<option value="rah_external_output_page_delete">Delete</option>'.n.
 			'			</select>'.n.
 			'			<input type="submit" class="smallerbox" value="Go" />'.n.
