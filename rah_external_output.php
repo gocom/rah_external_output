@@ -35,6 +35,8 @@
 
 	function rah_external_output_install($event='',$step='') {
 		
+		global $prefs;
+		
 		/*
 			Uninstall if uninstalling the
 			plugin
@@ -54,48 +56,6 @@
 			return;
 		}
 		
-		global $prefs, $textarray;
-		
-		/*
-			Make sure language strings are set
-		*/
-		
-		foreach(
-			array(
-				'rah_external_output' => 'External Output',
-				'rah_external_output_name_taken' => 'The name is already taken. Please choose other name.',
-				'rah_external_output_start' => 'Start by creating your first snippet.',
-				'rah_external_output_no_items' => 'No snippets created yet.',
-				'rah_external_output_name' => 'Name',
-				'rah_external_output_content_type' => 'Content-Type',
-				'rah_external_output_posted' => 'Updated',
-				'rah_external_output_status' => 'Status',
-				'rah_external_output_view' => 'View',
-				'rah_external_output_active' => 'Active',
-				'rah_external_output_select_something' => 'Select something before continuing.',
-				'rah_external_output_snippets_removed' => 'Selected snippets removed.',
-				'rah_external_output_snippets_activated' => 'Selected snippets activated.',
-				'rah_external_output_snippets_disabled' => 'Selected snippets disabled.',
-				'rah_external_output_unknown_snippet' => 'Snippet does not exist.',
-				'rah_external_output_required' => 'Name is required.',
-				'rah_external_output_name_taken' => 'Snippets name is already taken.',
-				'rah_external_output_updated' => 'Changes saved.',
-				'rah_external_output_created' => 'Snippet created.',
-				'rah_external_output_nav_main' => 'Main',
-				'rah_external_output_nav_create' => 'Create a new snippet',
-				'rah_external_output_disabled' => 'Disabled',
-				'rah_external_output_code' => 'Snippet/code',
-				'rah_external_output_with_selected' => 'With selected...',
-				'rah_external_output_activate' => 'Activate',
-				'rah_external_output_disable' => 'Disable',
-				'rah_external_output_delete' => 'Delete',
-				'rah_external_output_save' => 'Save',
-				'rah_external_output_error_saving' => 'Database error occured while saving.'
-			) as $string => $translation
-		)
-			if(!isset($textarray[$string]))
-				$textarray[$string] = $translation;
-			
 		$version = '1.0';
 	
 		$current = 
