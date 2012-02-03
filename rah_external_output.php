@@ -6,7 +6,7 @@
  * @author Jukka Svahn
  * @date 2009-
  * @license GNU GPLv2
- * @link http://rahforum.biz/plugins/rah_default_category
+ * @link http://rahforum.biz/plugins/rah_external_output
  *
  * Requires Textpattern v4.4.1 or newer.
  *
