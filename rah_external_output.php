@@ -239,7 +239,7 @@
 				$out[] = 
 					'			<tr>'.n.
 					'				<td><a href="?event='.$event.'&amp;step=edit&amp;name='.htmlspecialchars($name).'">'.htmlspecialchars($name).'</a></td>'.n.
-					'				<td>'.(trim($content_type) ? htmlspecialchars($content_type) : '&#160;').'</td>'.n.
+					'				<td>'.($content_type ? htmlspecialchars($content_type) : '&#160;').'</td>'.n.
 					'				<td>'.safe_strftime('%b %d %Y %H:%M:%S',strtotime($posted)).'</td>'.n.
 					'				<td>'.($allow == 'Yes' ? gTxt('rah_external_output_active') :  gTxt('rah_external_output_disabled')).'</td>'.n.
 					'				<td>'.($allow == 'Yes' ? '<a href="'.hu.'?rah_external_output='.htmlspecialchars($name).'">'.gTxt('rah_external_output_view').'</a>' : '&#160;').'</td>'.n.
