@@ -45,7 +45,7 @@
 			
 			safe_delete(
 				'txp_prefs',
-				"name='rah_external_output_version'"
+				"name LIKE 'rah\_external\_output\_%'"
 			);
 			
 			return;
