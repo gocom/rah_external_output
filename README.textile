@@ -25,7 +25,7 @@ p. The tag is @<txp:rah_external_output />@ and attributes for it follow. The ta
 
 p. *name*
 Name of the external output you want to display.
-Default @name=""@ Example: @"LoginShowToExtSiteScript"@
+Example: @name="LoginShowToExtSiteScript"@ Default: @""@
 
 h2. Changelog
 
