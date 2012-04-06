@@ -36,18 +36,18 @@
 
 	function rah_external_output($atts) {
 		
+		static $cache = array();
+		
 		extract(lAtts(array(
 			'name' => ''
 		),$atts));
 		
-		global $rah_external_output;
+		if(isset($cache[$name])) {
+			return parse($cache[$name]);
+		}
 		
-		if(isset($rah_external_output[$name]))
-			return parse($rah_external_output[$name]);
-		
-		$code = fetch('code','rah_external_output','name',$name);
-		$rah_external_output[$name] = $code;
-		return parse($code);
+		$cache[$name] = fetch('code', 'rah_external_output', 'name', $name);
+		return parse($cache[$name]);
 	}
 
 class rah_external_output {
