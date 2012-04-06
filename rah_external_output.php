@@ -59,7 +59,7 @@
 
 class rah_external_output {
 
-	static public $version = '1.0';
+	static public $version = '0.9';
 
 	/**
 	 * The unified installer and uninstaller
