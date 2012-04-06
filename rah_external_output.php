@@ -615,14 +615,12 @@ class rah_external_output {
 				#rah_external_output_container table {
 					width: 100%;
 				}
-				#rah_external_output_container #rah_external_output_step {
+				#rah_external_output_container .rah_ui_step {
 					text-align: right;
 				}
 				#rah_external_output_container textarea,
 				#rah_external_output_container input.edit {
-					width: 948px;
-					padding: 0;
-					margin: 0;
+					width: 100%;
 				}
 			</style>
 
