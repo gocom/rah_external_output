@@ -19,21 +19,48 @@
 		add_privs('rah_external_output', '1,2');
 		add_privs('plugin_prefs.rah_external_output', '1,2');
 		register_tab('extensions', 'rah_external_output', gTxt('rah_external_output'));
-		register_callback('rah_external_output_page', 'rah_external_output');
-		register_callback('rah_external_output_head', 'admin_side', 'head_end');
-		register_callback('rah_external_output_prefs', 'plugin_prefs.rah_external_output');
-		register_callback('rah_external_output_install', 'plugin_lifecycle.rah_external_output');
+		register_callback(array('rah_external_output', 'panes'), 'rah_external_output');
+		register_callback(array('rah_external_output', 'head'), 'admin_side', 'head_end');
+		register_callback(array('rah_external_output', 'prefs'), 'plugin_prefs.rah_external_output');
+		register_callback(array('rah_external_output', 'install'), 'plugin_lifecycle.rah_external_output');
 	}
-	else
-		register_callback('rah_external_output_do', 'textpattern');
+	else {
+		register_callback(array('rah_external_output', 'get_snippet'), 'textpattern');
+	}
 
 /**
- * The unified installer and uninstaller
- * @param string $event Admin-side event.
- * @param string $step Admin-side, plugin-lifecycle step.
+ * Tag for returning snippets.
+ * @param array $atts
+ * @return string
  */
 
-	function rah_external_output_install($event='', $step='') {
+	function rah_external_output($atts) {
+		
+		extract(lAtts(array(
+			'name' => ''
+		),$atts));
+		
+		global $rah_external_output;
+		
+		if(isset($rah_external_output[$name]))
+			return parse($rah_external_output[$name]);
+		
+		$code = fetch('code','rah_external_output','name',$name);
+		$rah_external_output[$name] = $code;
+		return parse($code);
+	}
+
+class rah_external_output {
+
+	static public $version = '1.0';
+
+	/**
+	 * The unified installer and uninstaller
+	 * @param string $event Admin-side event.
+	 * @param string $step Admin-side, plugin-lifecycle step.
+	 */
+
+	static public function install($event='', $step='') {
 		
 		global $prefs;
 		
@@ -50,14 +77,12 @@
 			
 			return;
 		}
-		
-		$version = '1.0';
 	
 		$current = 
 			isset($prefs['rah_external_output_version']) ? 
 				$prefs['rah_external_output_version'] : 'base';
 		
-		if($current == $version)
+		if($current == self::$version)
 			return;
 		
 		if($current == 'base')
@@ -86,37 +111,15 @@
 			) PACK_KEYS=1 AUTO_INCREMENT=1 CHARSET=utf8"
 		);
 		
-		set_pref('rah_external_output_version',$version,'rah_exo',2,'',0);
-		$prefs['rah_external_output_version'] = $version;
+		set_pref('rah_external_output_version', self::$version, 'rah_exo', 2, '', 0);
+		$prefs['rah_external_output_version'] = self::$version;
 	}
 
-/**
- * Tag for returning snippets.
- * @param array $atts
- * @return string
- */
+	/**
+	 * Outputs external snippets.
+	 */
 
-	function rah_external_output($atts) {
-		
-		extract(lAtts(array(
-			'name' => ''
-		),$atts));
-		
-		global $rah_external_output;
-		
-		if(isset($rah_external_output[$name]))
-			return parse($rah_external_output[$name]);
-		
-		$code = fetch('code','rah_external_output','name',$name);
-		$rah_external_output[$name] = $code;
-		return parse($code);
-	}
-
-/**
- * Outputs external snippets.
- */
-
-	function rah_external_output_do() {
+	static public function get_snippet() {
 		
 		$name = gps('rah_external_output');
 		
@@ -174,19 +177,19 @@
 		exit();
 	}
 
-/**
- * Delivers panes.
- */
+	/**
+	 * Delivers panes
+	 */
 
-	function rah_external_output_page() {
-		require_privs('rah_external_output');
-		rah_external_output_install();
-		
+	static function panes() {
 		global $step;
+		
+		require_privs('rah_external_output');
+		self::install();
 		
 		$steps = 
 			array(
-				'list' => false,
+				'browse' => false,
 				'edit' => false,
 				'save' => true,
 				'activate' => true,
@@ -194,19 +197,20 @@
 				'delete' => true
 			);
 		
-		if(!$step || !bouncer($step, $steps))
-			$step = 'list';
+		$panes = new rah_external_output();
 		
-		$func = 'rah_external_output_' . $step;
-		$func();
+		if(!$step || !bouncer($step, $steps))
+			$step = 'browse';
+		
+		$panes->$step();
 	}
 
-/**
- * The main pane. Lists snippets
- * @param string $message The message shown by Textpattern.
- */
+	/**
+	 * The main pane. Lists snippets
+	 * @param string $message The message shown by Textpattern.
+	 */
 
-	function rah_external_output_list($message='') {
+	public function browse($message='') {
 		
 		global $event;
 		
@@ -267,19 +271,19 @@
 			'		<input type="submit" class="smallerbox" value="'.gTxt('go').'" />'.n.
 			'	</p>'.n;
 			
-		rah_external_ouput_header($out,'rah_external_output',$message);
+		$this->pane($out,'rah_external_output',$message);
 	}
 
-/**
- * Deletes array of snippets
- */
+	/**
+	 * Deletes an array of snippets
+	 */
 
-	function rah_external_output_delete() {
+	public function delete() {
 		
 		$selected = ps('selected');
 		
 		if(!is_array($selected) || !$selected) {
-			rah_external_output_list('rah_external_output_select_something');
+			$this->browse('rah_external_output_select_something');
 			return;
 		}
 		
@@ -291,19 +295,19 @@
 			'name in('.implode(',',$ids).')'
 		);
 		
-		rah_external_output_list('rah_external_output_snippets_removed');
+		$this->browse('rah_external_output_snippets_removed');
 	}
 
-/**
- * Activates selected array of snippets.
- * @param string $state The new status.
- */
+	/**
+	 * Activates selected array of snippets.
+	 * @param string $state The new status.
+	 */
 
-	function rah_external_output_activate($state='Yes') {
+	public function activate($state='Yes') {
 		$selected = ps('selected');
 		
 		if(!is_array($selected) || !$selected) {
-			rah_external_output_list('rah_external_output_select_something');
+			$this->browse('rah_external_output_select_something');
 			return;
 		}
 		
@@ -318,24 +322,24 @@
 		
 		$msg = $state == 'Yes' ? 'activated' : 'disabled';
 		
-		rah_external_output_list('rah_external_output_snippets_'.$msg);
+		$this->browse('rah_external_output_snippets_'.$msg);
 	}
 
-/**
- * Disables array of snippets.
- */
+	/**
+	 * Disables an array of snippets.
+	 */
 
-	function rah_external_output_disable() {
-		rah_external_output_activate('No');
+	public function disable() {
+		$this->activate('No');
 	}
 
-/**
- * Pane for editing snippets.
- * @param string $message The message shown by Textpattern.
- * @param string $newname The snippet's new name, if changed.
- */
+	/**
+	 * Pane for editing snippets.
+	 * @param string $message The message shown by Textpattern.
+	 * @param string $newname The snippet's new name, if changed.
+	 */
 
-	function rah_external_output_edit($message='', $newname='') {
+	public function edit($message='', $newname='') {
 		
 		extract(
 			psa(
@@ -359,7 +363,7 @@
 				);
 			
 			if(!$rs) {
-				rah_external_output_list('rah_external_output_unknown_snippet');
+				$this->browse('rah_external_output_unknown_snippet');
 				return;
 			}
 			
@@ -412,14 +416,14 @@
 			'			<input type="submit" value="'.gTxt('rah_external_output_save').'" class="publish" />'.n.
 			'		</p>'.n;
 		
-		rah_external_ouput_header($out,'rah_external_output',$message);
+		$this->pane($out,'rah_external_output',$message);
 	}
 
-/**
- * Saves snippet
- */
+	/**
+	 * Saves snippet
+	 */
 
-	function rah_external_output_save() {
+	public function save() {
 		
 		extract(
 			doSlash(
@@ -436,7 +440,7 @@
 		);
 		
 		if(!trim($name)) {
-			rah_external_output_edit('rah_external_output_required');
+			$this->edit('rah_external_output_required');
 			return;
 		}
 		
@@ -449,7 +453,7 @@
 					"name='$name'"
 				) > 0
 			) {
-				rah_external_output_edit('rah_external_output_name_taken');
+				$this->edit('rah_external_output_name_taken');
 				return;
 			}
 			
@@ -464,11 +468,11 @@
 					"name='$editing'"
 				) === false
 			) {
-				rah_external_output_edit('rah_external_output_error_saving');
+				$this->edit('rah_external_output_error_saving');
 				return;
 			}
 			
-			rah_external_output_edit('rah_external_output_updated',ps('name'));
+			$this->edit('rah_external_output_updated',ps('name'));
 			return;
 			
 		}
@@ -479,7 +483,7 @@
 				"name='$name'"
 			) > 0
 		) {
-			rah_external_output_edit('rah_external_output_name_taken');
+			$this->edit('rah_external_output_name_taken');
 			return;
 		}
 		
@@ -493,21 +497,21 @@
 				allow='$allow'"
 			) === false
 		) {
-			rah_external_output_edit('rah_external_output_error_saving');
+			$this->edit('rah_external_output_error_saving');
 			return;	
 		}
 		
-		rah_external_output_edit('rah_external_output_created');
+		$this->edit('rah_external_output_created');
 	}
 
-/**
- * Outputs the panes
- * @param mixed $out Pane's HTML markup.
- * @param string $pagetop Page's title.
- * @param string $message The message shown by Textpattern.
- */
+	/**
+	 * Outputs the pane
+	 * @param mixed $out Pane's HTML markup.
+	 * @param string $pagetop Page's title.
+	 * @param string $message The message shown by Textpattern.
+	 */
 
-	function rah_external_ouput_header($out, $pagetop, $message) {
+	private function pane($out, $pagetop, $message) {
 		
 		global $event, $step;
 		
@@ -534,11 +538,11 @@
 			'</form>'.n;
 	}
 
-/**
- * Adds styles and JavaScript to <head>
- */
+	/**
+	 * Adds styles and JavaScript to <head>
+	 */
 
-	function rah_external_output_head() {
+	static public function head() {
 		global $event;
 		
 		if($event != 'rah_external_output')
@@ -632,15 +636,17 @@
 EOF;
 	}
 
-/**
- * Redirect to the admin-side interface
- */
+	/**
+	 * Redirect to the admin-side interface
+	 */
 
-	function rah_external_output_prefs() {
+	static public function prefs() {
 		header('Location: ?event=rah_external_output');
 		echo 
 			'<p>'.n.
 			'	<a href="?event=rah_external_output">'.gTxt('continue').'</a>'.n.
 			'</p>';
 	}
+}
+
 ?>
