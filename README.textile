@@ -32,7 +32,7 @@ h2. Changelog
 h3. Version 1.0 - upcoming
 
 * Added: Activity messages are branded with message type.
-* Added: @<txp:rah_external_output />@ tag warns about invalid name attribute.
+* Added: @<txp:rah_external_output />@ tag warns about invalid snippet @name@.
 * Improved: Moved embedded language strings to separate Textpack files.
 * Removed: Raw PHP support. Compatibility with "r3706.":http://code.google.com/p/textpattern/source/detail?r=3706
 * Now requires PHP5 or newer.
