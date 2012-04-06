@@ -612,7 +612,7 @@ class rah_external_output {
 				$(document).ready(function(){
 					rah_external_output_stepper();
 				});
-				-->
+				//-->
 			</script>
 			<style type="text/css">
 				#rah_external_output_container {
