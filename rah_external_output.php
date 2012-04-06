@@ -451,7 +451,7 @@ class rah_external_output {
 				safe_count(
 					'rah_external_output',
 					"name='$name'"
-				) > 0
+				)
 			) {
 				$this->edit(array(gTxt('rah_external_output_name_taken'), E_ERROR));
 				return;
@@ -480,7 +480,7 @@ class rah_external_output {
 			safe_count(
 				'rah_external_output',
 				"name='$name'"
-			) > 0
+			)
 		) {
 			$this->edit(array(gTxt('rah_external_output_name_taken'), E_ERROR));
 			return;
