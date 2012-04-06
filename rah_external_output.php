@@ -222,7 +222,7 @@ class rah_external_output {
 		
 		$rs = 
 			safe_rows(
-				'name,posted,content_type,allow',
+				'name, posted, content_type, allow',
 				'rah_external_output',
 				'1=1 order by name asc'
 			);
@@ -277,7 +277,7 @@ class rah_external_output {
 			'		<input type="submit" class="smallerbox" value="'.gTxt('go').'" />'.n.
 			'	</p>'.n;
 			
-		$this->pane($out,'rah_external_output',$message);
+		$this->pane($out, 'rah_external_output', $message);
 	}
 
 	/**
@@ -289,7 +289,7 @@ class rah_external_output {
 		$selected = ps('selected');
 		
 		if(!is_array($selected) || !$selected) {
-			$this->browse('rah_external_output_select_something');
+			$this->browse(array(gTxt('rah_external_output_select_something'), E_WARNING));
 			return;
 		}
 		
@@ -298,7 +298,7 @@ class rah_external_output {
 			'name in('.implode(',', quote_list($selected)).')'
 		);
 		
-		$this->browse('rah_external_output_snippets_removed');
+		$this->browse(gTxt('rah_external_output_snippets_removed'));
 	}
 
 	/**
@@ -310,7 +310,7 @@ class rah_external_output {
 		$selected = ps('selected');
 		
 		if(!is_array($selected) || !$selected) {
-			$this->browse('rah_external_output_select_something');
+			$this->browse(array(gTxt('rah_external_output_select_something'), E_WARNING));
 			return;
 		}
 		
@@ -322,7 +322,7 @@ class rah_external_output {
 		
 		$msg = $state == 'Yes' ? 'activated' : 'disabled';
 		
-		$this->browse('rah_external_output_snippets_'.$msg);
+		$this->browse(gTxt('rah_external_output_snippets_'.$msg));
 	}
 
 	/**
@@ -357,13 +357,13 @@ class rah_external_output {
 			
 			$rs = 
 				safe_row(
-					'name,content_type,code,allow',
+					'name, content_type, code, allow',
 					'rah_external_output',
 					"name='".doSlash(gps('name'))."'"
 				);
 			
 			if(!$rs) {
-				$this->browse('rah_external_output_unknown_snippet');
+				$this->browse(array(gTxt('rah_external_output_unknown_snippet'), E_WARNING));
 				return;
 			}
 			
@@ -416,7 +416,7 @@ class rah_external_output {
 			'			<input type="submit" value="'.gTxt('rah_external_output_save').'" class="publish" />'.n.
 			'		</p>'.n;
 		
-		$this->pane($out,'rah_external_output',$message);
+		$this->pane($out, 'rah_external_output', $message);
 	}
 
 	/**
@@ -440,7 +440,7 @@ class rah_external_output {
 		);
 		
 		if(!trim($name)) {
-			$this->edit('rah_external_output_required');
+			$this->edit(array(gTxt('rah_external_output_required'), E_ERROR));
 			return;
 		}
 		
@@ -453,7 +453,7 @@ class rah_external_output {
 					"name='$name'"
 				) > 0
 			) {
-				$this->edit('rah_external_output_name_taken');
+				$this->edit(array(gTxt('rah_external_output_name_taken'), E_ERROR));
 				return;
 			}
 			
@@ -468,13 +468,12 @@ class rah_external_output {
 					"name='$editing'"
 				) === false
 			) {
-				$this->edit('rah_external_output_error_saving');
+				$this->edit(array(gTxt('rah_external_output_error_saving'), E_ERROR));
 				return;
 			}
 			
-			$this->edit('rah_external_output_updated',ps('name'));
+			$this->edit(gTxt('rah_external_output_updated'), ps('name'));
 			return;
-			
 		}
 		
 		if(
@@ -483,7 +482,7 @@ class rah_external_output {
 				"name='$name'"
 			) > 0
 		) {
-			$this->edit('rah_external_output_name_taken');
+			$this->edit(array(gTxt('rah_external_output_name_taken'), E_ERROR));
 			return;
 		}
 		
@@ -497,11 +496,11 @@ class rah_external_output {
 				allow='$allow'"
 			) === false
 		) {
-			$this->edit('rah_external_output_error_saving');
+			$this->edit(array(gTxt('rah_external_output_error_saving'), E_ERROR));
 			return;	
 		}
 		
-		$this->edit('rah_external_output_created');
+		$this->edit(gTxt('rah_external_output_created'));
 	}
 
 	/**
@@ -515,19 +514,17 @@ class rah_external_output {
 		
 		global $event, $step;
 		
-		if($message)
-			$message = gTxt($message);
+		pagetop(gTxt($pagetop), $message);
 		
-		pagetop(gTxt($pagetop),$message);
-		
-		if(is_array($out))
-			$out = implode('',$out);
+		if(is_array($out)) {
+			$out = implode('', $out);
+		}
 		
 		echo 
 			n.
 			'<form method="post" action="index.php" id="rah_external_output_container" class="rah_ui_container">'.n.
-			'	<input type="hidden" name="event" value="'.$event.'" />'.n.
-			'	<input type="hidden" name="_txp_token" value="'.form_token().'" />'.n.
+			eInput($event).
+			tInput().
 			'	<p id="rah_external_output_nav" class="rah_ui_nav">'.
 				($step == 'edit' || $step == 'save' ? 
 					' <span class="rah_ui_sep">&#187;</span> <a href="?event='.$event.'">'.gTxt('rah_external_output_nav_main').'</a>' : ''
