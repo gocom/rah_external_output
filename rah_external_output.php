@@ -162,10 +162,6 @@ class rah_external_output {
 		$pretext['secondpass'] = true;
 		trace_add('[ ~~~ '.gTxt('secondpass').' ~~~ ]');
 		$html = parse($html);
-
-		if($prefs['allow_page_php_scripting']) {
-			$html = evalString($html);
-		}
 		
 		restore_error_handler();
 		echo $html;
