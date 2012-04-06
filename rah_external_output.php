@@ -46,7 +46,14 @@
 			return parse($cache[$name]);
 		}
 		
-		$cache[$name] = fetch('code', 'rah_external_output', 'name', $name);
+		$r = fetch('code', 'rah_external_output', 'name', $name);
+		
+		if($r === false) {
+			trigger_error(gTxt('invalid_attribute_value', array('{name}' => $name)));
+			return;
+		}
+		
+		$cache[$name] = $r;
 		return parse($cache[$name]);
 	}
 
