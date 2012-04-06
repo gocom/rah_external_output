@@ -287,12 +287,9 @@ class rah_external_output {
 			return;
 		}
 		
-		foreach($selected as $name)
-			$ids[] = "'".doSlash($name)."'";
-		
 		safe_delete(
 			'rah_external_output',
-			'name in('.implode(',',$ids).')'
+			'name in('.implode(',', quote_list($selected)).')'
 		);
 		
 		$this->browse('rah_external_output_snippets_removed');
@@ -311,13 +308,10 @@ class rah_external_output {
 			return;
 		}
 		
-		foreach($selected as $name)
-			$ids[] = "'".doSlash($name)."'";
-		
 		safe_update(
 			'rah_external_output',
 			"allow='".doSlash($state)."'",
-			'name in('.implode(',',$ids).')'
+			'name in('.implode(',', quote_list($selected)).')'
 		);
 		
 		$msg = $state == 'Yes' ? 'activated' : 'disabled';
