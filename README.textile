@@ -12,7 +12,8 @@ h2. Requirements
 
 p. Rah_external_output's minimum requirements:
 
-* Textpattern 4.4.1+
+* Textpattern v4.4.1 or newer.
+* PHP5 or newer.
 
 h2. Installation and usage
 
@@ -27,6 +28,14 @@ Name of the external output you want to display.
 Default @name=""@ Example: @"LoginShowToExtSiteScript"@
 
 h2. Changelog
+
+h3. Version 1.0 - upcoming
+
+* Added: Activity messages are branded with message type.
+* Added: @<txp:rah_external_output />@ tag warns about invalid name attribute.
+* Improved: Moved embedded language strings to separate Textpack files.
+* Removed: Raw PHP support. Compatibility with "r3706.":http://code.google.com/p/textpattern/source/detail?r=3706
+* Now requires PHP5 or newer.
 
 h3. Version 0.9 - 2011/09/03
 
