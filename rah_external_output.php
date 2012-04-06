@@ -551,7 +551,7 @@ class rah_external_output {
 			<<<EOF
 			<script type="text/javascript">
 				<!--
-				function rah_external_output_stepper() {
+				$(document).ready(function(){
 					if($('#rah_external_output_step').length < 1)
 						return;
 					
@@ -604,10 +604,6 @@ class rah_external_output {
 							}
 						}
 					);
-				}
-			
-				$(document).ready(function(){
-					rah_external_output_stepper();
 				});
 				//-->
 			</script>
