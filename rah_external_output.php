@@ -92,10 +92,11 @@ class rah_external_output {
 		if($current == self::$version)
 			return;
 		
-		if($current == 'base')
+		if($current == 'base') {
 			@safe_query(
 				'DROP TABLE IF EXISTS '.safe_pfx('rah_external_output_mime')
 			);
+		}
 		
 		/*
 			Stores snippets.
