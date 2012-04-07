@@ -358,7 +358,7 @@ class rah_external_output {
 			
 			$rs = 
 				safe_row(
-					'name, content_type, code, allow',
+					'name, name as editing, content_type, code, allow',
 					'rah_external_output',
 					"name='".doSlash(gps('name'))."'"
 				);
@@ -369,12 +369,11 @@ class rah_external_output {
 			}
 			
 			extract($rs);
-			
-			$editing = $name;
 		}
 		
-		if($newname)
+		if($newname) {
 			$editing = $newname;
+		}
 		
 		$out[] =  
 			
