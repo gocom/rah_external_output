@@ -392,7 +392,7 @@ class rah_external_output {
 			'		<p>'.n.
 			'			<label>'.n.
 			'				'.gTxt('rah_external_output_code').'<br />'.n.
-			'				<textarea name="code" class="code" rows="20" cols="100">'.htmlspecialchars($code).'</textarea>'.n.
+			'				<textarea name="code" class="code" rows="10" cols="100">'.htmlspecialchars($code).'</textarea>'.n.
 			'			</label>'.n.
 			'		</p>'.n.
 			
