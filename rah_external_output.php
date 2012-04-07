@@ -523,7 +523,7 @@ class rah_external_output {
 		
 		echo 
 			n.
-			'<form method="post" action="index.php" id="rah_external_output_container" class="rah_ui_container">'.n.
+			'<form method="post" action="index.php" id="rah_external_output_container" class="txp-container rah_ui_container">'.n.
 			eInput($event).
 			tInput().
 			'	<p id="rah_external_output_nav" class="rah_ui_nav">'.
