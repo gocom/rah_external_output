@@ -377,9 +377,8 @@ class rah_external_output {
 		
 		$out[] =  
 			
-			'	<input type="hidden" name="step" value="save" />'.n.
-			
-			($editing ? '	<input type="hidden" name="editing" value="'.htmlspecialchars($editing).'" />'.n : '').
+			sInput('save').
+			hInput('editing', $editing).n.
 			
 			'		<p>'.n.
 			'			<label>'.n.
