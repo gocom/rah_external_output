@@ -29,3 +29,4 @@ rah_external_output_disable => Disable
 rah_external_output_delete => Delete
 rah_external_output_save => Save
 rah_external_output_error_saving => Database error occured while saving.
+rah_external_output_dateformat => %b %d %Y %H:%M:%S
