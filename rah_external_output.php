@@ -121,7 +121,7 @@ class rah_external_output {
 		$r = safe_field(
 			'Form', 
 			'txp_form', 
-			"name='".doSlash('rah_eo_' . trim(preg_replace('/[<>&"\']/', '', $name)))."'"
+			"name='".doSlash('rah_eo_'.$name)."'"
 		);
 		
 		if($r === false) {
