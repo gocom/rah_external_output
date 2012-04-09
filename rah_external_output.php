@@ -92,7 +92,7 @@ class rah_external_output {
 				);
 			}
 			
-			//@safe_query('DROP TABLE IF EXISTS '.safe_pfx('rah_external_output'));
+			@safe_query('DROP TABLE IF EXISTS '.safe_pfx('rah_external_output'));
 		}
 		
 		set_pref('rah_external_output_version', self::$version, 'rah_exo', 2, '', 0);
