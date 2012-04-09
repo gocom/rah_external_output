@@ -105,7 +105,7 @@ class rah_external_output {
 
 	static public function get_snippet() {
 		
-		global $pretext, $microstart, $prefs, $qcount, $qtime, $production_status, $txptrace, $siteurl;
+		global $pretext, $microstart, $qcount, $qtime, $production_status, $txptrace;
 		
 		$name = gps('rah_external_output');
 		
