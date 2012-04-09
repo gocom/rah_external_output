@@ -10,7 +10,7 @@ p. The term _external_ directly refers to no need of sections or page templates.
 
 h2. List of features
 
-* "Forms":http://textpattern.net/wiki/index.php?title=Forms that name is prefixed with @rah_eo_@ can be requested and their output accessed directly using a URL.
+* "Forms":http://textpattern.net/wiki/index.php?title=Forms that names are prefixed with @rah_eo_@ can be requested, and their output accessed, directly using a URL.
 * In addition to normal forms, these special Forms can contain HTTP header lines. Lines at the beginning of the form that start with @;@ are treated as headers.
 
 h2. Requirements
