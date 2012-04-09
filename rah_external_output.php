@@ -188,7 +188,7 @@ class rah_external_output {
 			(function() {
 				var input = $('input[name="name"]');
 			
-				if(input.val().indexOf('rah_eo') == 0) {
+				if(input.val().indexOf('rah_eo_') == 0) {
 					input.after(' <a id="rah_external_output_view" href="#">{$view}</a>');
 				}
 			
@@ -197,7 +197,7 @@ class rah_external_output {
 					e.preventDefault();
 					var input = $('input[name="name"]');
 				
-					if(input.val().indexOf('rah_eo') != 0) {
+					if(input.val().indexOf('rah_eo_') != 0) {
 						$(this).remove();
 						return false;
 					}
