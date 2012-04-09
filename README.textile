@@ -1,10 +1,17 @@
 h1. rah_external_output
 
-p. Output external content-type snippets. The plugin, rah_external_output, is used to output external scripts with custom content types. By external we mean that you don't have to waste sections, forms nor page templates for the scripts, and scripts (aka _global output forms_) can be easily used for other applications, for example ajax calls or a custom XML page.
+p. Rah_external_output is a "Textpattern":http://textpattern.com plugin that outputs custom content-type snippets that can be requested via URL, but do not require "page templates":http://textpattern.net/wiki/index.php?title=Pages or "sections":http://textpattern.net/wiki/index.php?title=Sections.
+
+p. This makes the plugin ideal for generating various publicly accessible snippets, like XML feeds or JavaScript Object Notations that can be then used to feed content to JavaScript scripts, or to integrate site content cross-domains.
+
+p. The plugin uses Textpattern's "Form snippets":http://textpattern.net/wiki/index.php?title=Forms to power it's external output pages. You create a normal misc form with a prefixed name, and that form is then can be requested and access via direct URL by referring its name.
+
+p. The term _external_ directly refers to no need of sections or page templates. Only thing you need is a form. In essence the plugin is for accessing Forms output via a URL.
 
 h2. List of features
 
-* Create and set content-types for the code snippets.
+* "Forms":":http://textpattern.net/wiki/index.php?title=Forms that name is prefixed with @rah_eo_@ can be requested and their output accessed directly using a URL.
+* In addition to normal forms, these special Forms can contain HTTP header lines. Lines at the beginning of the form that start with @;@ are treated as headers.
 
 h2. Requirements
 
@@ -13,9 +20,33 @@ p. Rah_external_output's minimum requirements:
 * Textpattern v4.4.1 or newer.
 * PHP5 or newer.
 
-h2. Installation and usage
+h2. Installation
 
 p. The general behavior stands: paste plugin code to the plugin installer textarea and run the automatic setup. Then just activate the plugin and you are ready to use the plugin's features.
+
+h2. Usage
+
+p. Rah_external_output treats misc Forms that are prefixed with @rah_eo_@ as a "external" content-type snippets. These special prefixed Forms can be accessed using a URL. This URL would follow pattern:
+
+bc. http://example.com/?rah_external_output=FormNameWithoutPrefix
+
+p. Where @example.com@ is the site's URL and @FormNameWithoutPrefix@ is the form's name excluding the prefix. The above URL would output a misc Form named @rah_eo_FormNameWithoutPrefix@.
+
+h2. Custom HTTP headers
+
+p. In addition to Form normal features, rah_external_output's special Forms support sending custom HTTP headers, including content-types.
+
+p. All lines at the beginning of the form starting with semicolon (@;@) are sent as HTTP headers, including content-types.
+
+bc. ; Property: Value
+
+p. Using these header lines visitor can be redirected, or document's content-type can be changed. Following Form would be sent as plain-text.
+
+bc.. ; Content-type: text/plain
+
+<txp:article_custom limit="15">
+	<txp:permlink><txp:title /></txp:permlink>
+</txp:article_custom>
 
 h2. Changelog
 
