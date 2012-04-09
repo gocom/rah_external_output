@@ -4,9 +4,7 @@ p. Output external content-type snippets. The plugin, rah_external_output, is us
 
 h2. List of features
 
-* Clean interface to write and adjust code snippets.
 * Create and set content-types for the code snippets.
-* Two ways to display the scripts: An automatic URL call, and an alternative tag function to display the end results.
 
 h2. Requirements
 
@@ -17,24 +15,16 @@ p. Rah_external_output's minimum requirements:
 
 h2. Installation and usage
 
-p. The general behavior stands: paste plugin code to the plugin installer textarea and run the automatic setup. Then just activate the plugin and you are ready to use the new interface under _TXP / Extensions / External output_.
-
-h2. Attributes
-
-p. The tag is @<txp:rah_external_output />@ and attributes for it follow. The tag is a secondary feature, and the automatic URL call method should be preferred over the tag.
-
-p. *name*
-Name of the external output you want to display.
-Example: @name="LoginShowToExtSiteScript"@ Default: @""@
+p. The general behavior stands: paste plugin code to the plugin installer textarea and run the automatic setup. Then just activate the plugin and you are ready to use the plugin's features.
 
 h2. Changelog
 
 h3. Version 1.0 - upcoming
 
-* Added: Activity messages are branded with message type.
-* Added: @<txp:rah_external_output />@ tag warns about invalid snippet @name@.
-* Improved: Moved embedded language strings to separate Textpack files.
+* Removed: whole user interface. The plugin now uses @rah_eo_@ prefixed forms.
+* Removed: @<txp:rah_external_output />@ tag. As forms are now used, normal and more flexible "output_form":http://textpattern.net/wiki/index.php?title=output_form tag can be used.
 * Removed: Raw PHP support. Compatibility with "r3706.":http://code.google.com/p/textpattern/source/detail?r=3706
+* Added: migration assistant script. The script is run automatically on install and migrates rah_external_output snippets from old interface to forms.
 * Now requires PHP5 or newer.
 
 h3. Version 0.9 - 2011/09/03
