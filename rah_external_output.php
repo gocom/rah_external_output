@@ -18,6 +18,7 @@
 	if(@txpinterface == 'admin') {
 		rah_external_output::install();
 		register_callback(array('rah_external_output', 'install'), 'plugin_lifecycle.rah_external_output');
+		register_callback(array('rah_external_output', 'view'), 'form');
 	}
 	else {
 		register_callback(array('rah_external_output', 'get_snippet'), 'textpattern');
@@ -172,6 +173,41 @@ class rah_external_output {
 		}
 
 		exit;
+	}
+	
+	/**
+	 * Adds a view link to the form editor
+	 */
+	
+	static public function view() {
+		
+		$view = escape_js(gTxt('view'));
+		$hu = escape_js(hu);
+	
+		$js = <<<EOF
+			(function() {
+				var input = $('input[name="name"]');
+			
+				if(input.val().indexOf('rah_eo') == 0) {
+					input.after(' <a id="rah_external_output_view" href="#">{$view}</a>');
+				}
+			
+				$('a#rah_external_output_view').live('click', function(e) {
+					
+					e.preventDefault();
+					var input = $('input[name="name"]');
+				
+					if(input.val().indexOf('rah_eo') != 0) {
+						$(this).remove();
+						return false;
+					}
+					
+					window.open('{$hu}?rah_external_output=' + input.val().substr(7));
+				});
+			})();
+EOF;
+
+		echo script_js($js);
 	}
 }
 
