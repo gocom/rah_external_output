@@ -44,6 +44,11 @@ class rah_external_output {
 				"name LIKE 'rah\_external\_output\_%'"
 			);
 			
+			safe_delete(
+				'txp_form',
+				"name LIKE 'rah\_eo\_%' OR name LIKE '\_rah\_eo\_%'"
+			);
+			
 			return;
 		}
 	
@@ -73,7 +78,7 @@ class rah_external_output {
 				$name = 'rah_eo_' . $a['name'];
 				
 				if($a['allow'] != 'Yes') {
-					$name = 'bck.' . $name;
+					$name = '_' . $name;
 				}
 				
 				if(safe_count('txp_form', "name='".doSlash($name)."'")) {
