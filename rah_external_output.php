@@ -179,21 +179,15 @@ class rah_external_output {
 		$js = <<<EOF
 			(function() {
 				var input = $('input[name="name"]');
+				var value = input.val();
 			
-				if(input.val().indexOf('rah_eo_') == 0) {
+				if(value.indexOf('rah_eo_') == 0) {
 					input.after(' <a id="rah_external_output_view" href="#">{$view}</a>');
 				}
 			
 				$('a#rah_external_output_view').live('click', function(e) {
 					e.preventDefault();
-					var input = $('input[name="name"]');
-				
-					if(input.val().indexOf('rah_eo_') != 0) {
-						$(this).remove();
-						return false;
-					}
-					
-					window.open('{$hu}?rah_external_output=' + input.val().substr(7));
+					window.open('{$hu}?rah_external_output=' + value.substr(7));
 				});
 			})();
 EOF;
