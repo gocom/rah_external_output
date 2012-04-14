@@ -158,18 +158,10 @@ class rah_external_output {
 			header(trim(substr($line, 1)));
 			unset($r[$key]);
 		}
-
-		$r = implode(n, $r);
 		
 		set_error_handler('tagErrorHandler');
-		$pretext['secondpass'] = false;
-		$r = parse($r);
-		$pretext['secondpass'] = true;
-		trace_add('[ ~~~ '.gTxt('secondpass').' ~~~ ]');
-		$r = parse($r);
-		
+		echo parse(parse(implode(n, $r)));
 		restore_error_handler();
-		echo $r;
 		
 		if(gps('rah_external_output_trace') && in_array($production_status, array('debug', 'testing'))) {
 			
