@@ -106,7 +106,7 @@ class rah_external_output {
 	}
 
 	/**
-	 * Outputs external snippets.
+	 * Outputs external snippets
 	 */
 
 	static public function get_snippet() {
@@ -128,10 +128,24 @@ class rah_external_output {
 		if($r === false) {
 			return;
 		}
+		
+		$mime = array(
+			'json' => 'application/json',
+			'js' => 'text/javascript',
+			'xml' => 'text/xml',
+			'css' => 'text/css',
+			'txt' => 'text/plain',
+			'html' => 'text/html',
+		);
 
 		ob_start();
 		ob_end_clean();
 		txp_status_header('200 OK');
+		$ext = pathinfo($name, PATHINFO_EXTENSION);
+
+		if($ext && isset($mime[$ext])) {
+			header('Content-type: '.$mime[$ext].'; charset=utf-8');
+		}
 		
 		$r = explode(n, $r);
 		
@@ -144,7 +158,7 @@ class rah_external_output {
 			header(trim(substr($line, 1)));
 			unset($r[$key]);
 		}
-		
+
 		$r = implode(n, $r);
 		
 		set_error_handler('tagErrorHandler');
