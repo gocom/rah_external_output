@@ -157,13 +157,12 @@ class rah_external_output {
 			header(trim(substr($line, 1)));
 			unset($r[$key]);
 		}
-		
+
 		set_error_handler('tagErrorHandler');
 		echo parse(parse(implode(n, $r)));
 		restore_error_handler();
-		
-		if(gps('rah_external_output_trace') && in_array($production_status, array('debug', 'testing'))) {
-			
+
+		if($ext == 'html' && $production_status == 'debug') {
 			$microdiff = getmicrotime() - $microstart;
 			
 			echo 
@@ -172,7 +171,7 @@ class rah_external_output {
 				n.comment('Queries: '.$qcount).
 				maxMemUsage('end of textpattern()', 1);
 			
-			if(!empty($txptrace) && is_array($txptrace)) {
+			if($txptrace && is_array($txptrace)) {
 				echo n.comment('txp tag trace: '.n.str_replace('--','&shy;&shy;', implode(n, $txptrace)).n);
 			}
 		}
