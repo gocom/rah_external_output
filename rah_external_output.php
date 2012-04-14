@@ -138,8 +138,7 @@ class rah_external_output {
 			'html' => 'text/html',
 		);
 
-		ob_start();
-		ob_end_clean();
+		ob_clean();
 		txp_status_header('200 OK');
 		$ext = pathinfo($name, PATHINFO_EXTENSION);
 
