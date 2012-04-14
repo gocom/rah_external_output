@@ -53,9 +53,8 @@ class rah_external_output {
 			return;
 		}
 	
-		$current = 
-			isset($prefs['rah_external_output_version']) ? 
-				$prefs['rah_external_output_version'] : 'base';
+		$current = isset($prefs['rah_external_output_version']) ? 
+			$prefs['rah_external_output_version'] : 'base';
 		
 		if($current == self::$version)
 			return;
@@ -73,25 +72,18 @@ class rah_external_output {
 		);
 		
 		if($rs) {
-	
+
 			foreach($rs as $a) {
+				extract($a);
 				
-				$name = 'rah_eo_' . $a['name'];
-				
-				if($a['allow'] != 'Yes') {
-					$name = '_' . $name;
-				}
+				$name = ($allow != 'Yes' ? '_' : '') . 'rah_eo_'.$name;
 				
 				if(safe_count('txp_form', "name='".doSlash($name)."'")) {
 					continue;
 				}
-				
-				if(!$a['content_type']) {
-					$a['content_type'] = 'text/html';
-				}
-				
-				$code = '; Content-type: ' . $a['content_type'] .n. $a['code'];
-				
+					
+				$code = ($content_type ? '; Content-type: '.$content_type.n : '') . $code;
+					
 				safe_insert(
 					'txp_form',
 					"name='".doSlash($name)."', type='misc', Form='".doSlash($code)."'"
@@ -193,7 +185,6 @@ class rah_external_output {
 				}
 			
 				$('a#rah_external_output_view').live('click', function(e) {
-					
 					e.preventDefault();
 					var input = $('input[name="name"]');
 				
