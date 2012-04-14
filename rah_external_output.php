@@ -163,17 +163,12 @@ class rah_external_output {
 		restore_error_handler();
 
 		if($ext == 'html' && $production_status == 'debug') {
-			$microdiff = getmicrotime() - $microstart;
-			
 			echo 
-				n.comment('Runtime:    '.substr($microdiff,0,6)).
+				n.comment('Runtime: '.substr(getmicrotime() - $microstart, 0, 6)).
 				n.comment('Query time: '.sprintf('%02.6f', $qtime)).
 				n.comment('Queries: '.$qcount).
-				maxMemUsage('end of textpattern()', 1);
-			
-			if($txptrace && is_array($txptrace)) {
-				echo n.comment('txp tag trace: '.n.str_replace('--','&shy;&shy;', implode(n, $txptrace)).n);
-			}
+				maxMemUsage('end of textpattern()', 1).
+				n.comment('txp tag trace: '.n.str_replace('--', '&shy;&shy;', implode(n, (array) $txptrace)));
 		}
 		
 		callback_event('rah_external_output.snippet_end');
