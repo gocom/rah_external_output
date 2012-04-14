@@ -185,10 +185,11 @@ class rah_external_output {
 				echo n.comment('txp tag trace: '.n.str_replace('--','&shy;&shy;', implode(n, $txptrace)).n);
 			}
 		}
-
+		
+		callback_event('rah_external_output.snippet_end');
 		exit;
 	}
-	
+
 	/**
 	 * Adds a view link to the form editor
 	 */
