@@ -107,7 +107,7 @@ class rah_external_output {
 		
 		$name = gps('rah_external_output');
 		
-		if(!$name) {
+		if($name === '' || !is_string($name)) {
 			return;
 		}
 		
