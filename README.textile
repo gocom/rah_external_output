@@ -48,6 +48,16 @@ bc.. ; Content-type: text/plain
 	<txp:permlink><txp:title /></txp:permlink>
 </txp:article_custom>
 
+p. Note that for security reasons, HTTP header lines do not support Textpattern tags. Headers are picked from the Form before any Textpattern tags are parsed.
+
+h2. Content-types and extensions
+
+p. In addition to custom HTTP headers, a snippet's content-type can be set using file extensions, appended to the form's name. Supported extensions are @.json@, @.js@, @.xml@, @.css@, @.txt@ and @.html@.
+
+h2. Tag trace and debugging
+
+p. As Textpattern's normal page templates, rah_external_output's snippets support "tag traces.":http://textpattern.net/wiki/index.php?title=tag_trace In "debugging mode,":http://textpattern.net/wiki/index.php?title=Basic_Preferences#Production_Status a tag trace is appended to the HTML output of each snippet that ends with @.html@ extension. As a tag trace on a normal page, the trace tells you which Textpattern tags are being executed and their outcome.
+
 h2. Changelog
 
 h3. Version 1.0 - upcoming
@@ -56,9 +66,9 @@ h3. Version 1.0 - upcoming
 * Removed: @<txp:rah_external_output />@ tag. As forms are used, normal and more flexible "output_form":http://textpattern.net/wiki/index.php?title=output_form tag can be used.
 * Removed: Raw PHP support to comply with "r3706.":http://code.google.com/p/textpattern/source/detail?r=3706
 * Added: Ability to set snippet content-type using file extension in the name.
-* Added: migration assistant script. The script is run automatically on install and migrates rah_external_output snippets from old interface to forms.
-* Added: @rah_external_output.snippet_end@ callback event.
-* Changed: tag trace can no longer be controlled using URL parameters. Tag trace is now visible when the snippet name has extension @.html@ and site is in debugging mode.
+* Added: migration assistant script. The script is run automatically on install and migrates rah_external_output snippets from the old interface to Forms.
+* Added: @rah_external_output.snippet_end@ callback event for developers.
+* Changed: "Tag trace":http://textpattern.net/wiki/index.php?title=tag_trace can no longer be controlled using a URL parameter. A tag trace is added when the snippet name has a @.html@ extension and the site is in debugging mode.
 * Now requires PHP5 or newer.
 * Compatibility with Textpattern v4.5.0.
 
