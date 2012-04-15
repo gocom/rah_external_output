@@ -118,7 +118,7 @@ class rah_external_output {
 		);
 		
 		if($r === false) {
-			return;
+			txp_die(gTxt('404_not_found'), 404);
 		}
 		
 		$mime = array(
