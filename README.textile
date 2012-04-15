@@ -58,6 +58,7 @@ h3. Version 1.0 - upcoming
 * Added: Ability to set snippet content-type using file extension in the name.
 * Added: migration assistant script. The script is run automatically on install and migrates rah_external_output snippets from old interface to forms.
 * Added: @rah_external_output.snippet_end@ callback event.
+* Changed: tag trace can no longer be controlled using URL parameters. Tag trace is now visible when the snippet name has extension @.html@ and site is in debugging mode.
 * Now requires PHP5 or newer.
 * Compatibility with Textpattern v4.5.0.
 
