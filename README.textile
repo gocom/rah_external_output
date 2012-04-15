@@ -52,11 +52,14 @@ h2. Changelog
 
 h3. Version 1.0 - upcoming
 
-* Removed: whole user interface. The plugin now uses @rah_eo_@ prefixed forms.
-* Removed: @<txp:rah_external_output />@ tag. As forms are now used, normal and more flexible "output_form":http://textpattern.net/wiki/index.php?title=output_form tag can be used.
-* Removed: Raw PHP support. Compatibility with "r3706.":http://code.google.com/p/textpattern/source/detail?r=3706
+* Removed: Plugin's own user interface. The plugin now uses @rah_eo_@ prefixed Form templates and integrates with Forms panel.
+* Removed: @<txp:rah_external_output />@ tag. As forms are used, normal and more flexible "output_form":http://textpattern.net/wiki/index.php?title=output_form tag can be used.
+* Removed: Raw PHP support to comply with "r3706.":http://code.google.com/p/textpattern/source/detail?r=3706
+* Added: Ability to set snippet content-type using file extension in the name.
 * Added: migration assistant script. The script is run automatically on install and migrates rah_external_output snippets from old interface to forms.
+* Added: @rah_external_output.snippet_end@ callback event.
 * Now requires PHP5 or newer.
+* Compatibility with Textpattern v4.5.0.
 
 h3. Version 0.9 - 2011/09/03
 
