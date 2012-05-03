@@ -34,13 +34,21 @@ p. Where @example.com@ is the site's URL and @FormNameWithoutPrefix@ is the form
 
 h2. Custom HTTP headers
 
-p. In addition to Form normal features, rah_external_output's special Forms support sending custom HTTP headers, including content-types.
+p. In addition to a form template's normal features, rah_external_output's special forms support sending custom HTTP headers, including a content-type header.
 
-p. All lines at the beginning of the form starting with semicolon (@;@) are sent as HTTP headers, including content-types.
+p. All lines at the beginning of the form starting with semicolon (@;@) are sent as HTTP headers. The lines can should be placed at the beginning of a form, starting from the first line. HTTP header lines and can not be preceded by any white-space or linebreaks. HTTP header lines follow the normal syntax you would expect from a HTTP header field definitions. A line consist of header property, the field, followed by a colon (@:@), followed by a value.
 
 bc. ; Property: Value
 
-p. Using these header lines visitor can be redirected, or document's content-type can be changed. Following Form would be sent as plain-text.
+p. A form supports multiple number of header lines. Each subsequent line starting with a semicolon is sent as a HTTP header.
+
+bc. ; Content-type: text/javascript
+; Cache-Control: no-store, no-cache, must-revalidate, pre-check=0, post-check=0, max-age=0
+; Expires: Sat, 24 Jul 2003 05:00:00 GMT
+; Last-Modified: Wed, 1 Jan 2025 05:00:00 GMT
+; Pragma: no-cache
+
+p. Using these HTTP header lines, visitor can be redirected, or document's content-type, encoding, caching or timestamp attributes can be changed. A form that starts with following header line would be sent as a plain-text.
 
 bc.. ; Content-type: text/plain
 
@@ -48,7 +56,7 @@ bc.. ; Content-type: text/plain
 	<txp:permlink><txp:title /></txp:permlink>
 </txp:article_custom>
 
-p. Note that for security reasons, HTTP header lines do not support Textpattern tags. Headers are picked from the Form before any Textpattern tags are parsed.
+p. Note that for security reasons, HTTP header lines do not allow Textpattern tags. Headers are collected from the form before any Textpattern tags are parsed. This to prevent any type of header injections that could occur otherwise.
 
 h2. Content-types and extensions
 
