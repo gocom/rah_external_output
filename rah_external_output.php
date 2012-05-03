@@ -103,7 +103,7 @@ class rah_external_output {
 
 	static public function get_snippet() {
 		
-		global $microstart, $qcount, $qtime, $production_status, $txptrace;
+		global $microstart, $qcount, $qtime, $production_status, $txptrace, $rah_external_output_mime;
 		
 		$name = gps('rah_external_output');
 		
@@ -128,7 +128,7 @@ class rah_external_output {
 			'css' => 'text/css',
 			'txt' => 'text/plain',
 			'html' => 'text/html',
-		);
+		) + (array) $rah_external_output_mime;
 
 		ob_clean();
 		txp_status_header('200 OK');
