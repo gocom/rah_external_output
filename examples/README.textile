@@ -1,0 +1,45 @@
+h1. Example form templates for rah_external_output
+
+p. This directory contains a collection of example snippets for rah_external_output. The files in the _examples_ directory can be saved as Textpattern's Form templates, named after the file's name.
+
+h2. rah_eo_images.json
+
+p. The snippet generates a JSON presentation of last 50 images. Requires "rah_function":https://github.com/gocom/rah_function plugin and PHP 5.2 or newer. The object will contain information of each image, including ID (property), image URL (@id.url@), thumbnail URL (@id.thumb@) and caption (@id.caption@). Generated file and the JSON will use following scheme:
+
+bc. {
+	"1" : {
+		"url" : "http://example.com/images/1.png",
+		"thumb" : "http://example.com/images/1t.png",
+		"caption" : "description"
+	}
+	[, ...]
+}
+
+p. This presentation can be then used like any other JSON data blob. For example, using it images could be lazy loaded to the page with Ajax. Following small example appends the images given by @rah_eo_images.json@ before the closing @</body>@ tag. Requires and uses "jQuery":http://jquery.com, and its getJSON() and each() methods.
+
+bc.. /**
+ * Load ?rah_external_output=images.json using getJSON()
+ */
+
+$.getJSON('/index.php', {'rah_external_output' : 'images.json'}, function(images) {
+
+	/**
+	 * Get the target where the images are added.
+	 */
+
+	var to = $('body');
+	
+	/**
+	 * Iterate through the object using each(), and append
+	 * the resulting markup to <body>
+	 */
+
+	$.each(images, function(id, data) {
+		to.append(
+			'<a href="'+data.url+'">'+
+				'<img src="'+data.thumb+'" alt="" />'+
+				'<span>'+data.caption+'</span>'+
+			'</a>'
+		);
+	});
+});
