@@ -84,7 +84,7 @@ class rah_external_output {
 					
 				$code = ($content_type ? '; Content-type: '.$content_type.n : '') . $code;
 					
-				safe_insert(
+				@safe_insert(
 					'txp_form',
 					"name='".doSlash($name)."', type='misc', Form='".doSlash($code)."'"
 				);
