@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+	<url><loc><txp:site_url /></loc></url>
+	
+	<txp:section_list wraptag="" break="">
+		<url><loc><txp:section url="1" /></loc></url>
+	</txp:section_list>
+	
+	<txp:category_list wraptag="" break="">
+		<url><loc><txp:category url="1" /></loc></url>
+	</txp:category_list>
+	
+	<txp:article_custom limit="9999">
+		<url><loc><txp:permlink /></loc></url>
+	</txp:article_custom>
+	
+	<txp:file_download_list wraptag="" break="">
+		<url><loc><txp:file_download_link /></loc></url>
+	</txp:file_download_list>
+	
+	<txp:images wraptag="" break="">
+		<url><loc><txp:image_url /></loc></url>
+	</txp:images>
+
+</urlset>

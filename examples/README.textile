@@ -43,3 +43,7 @@ $.getJSON('/index.php', {'rah_external_output' : 'images.json'}, function(images
 		);
 	});
 });
+
+h2. rah_eo_sitemap.xml
+
+p. The snippet generates a "XML sitemap":http://www.sitemaps.org/ targeted for search engines. The sitemap contains links to sections, categories, articles, files and images giving a basic idea how rah_external_output can be used to generate valid sitemaps for search engines.
