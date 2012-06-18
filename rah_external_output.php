@@ -26,7 +26,7 @@
 
 class rah_external_output {
 
-	static public $version = '0.9-789207e8cd';
+	static public $version = '0.9';
 
 	/**
 	 * The unified installer and uninstaller
@@ -54,9 +54,9 @@ class rah_external_output {
 		}
 	
 		$current = isset($prefs['rah_external_output_version']) ? 
-			$prefs['rah_external_output_version'] : 'base';
+			(string) $prefs['rah_external_output_version'] : 'base';
 		
-		if($current == self::$version)
+		if($current === self::$version)
 			return;
 		
 		if($current == 'base') {
