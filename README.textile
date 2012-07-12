@@ -6,12 +6,13 @@ p. This makes the plugin ideal for generating various publicly accessible snippe
 
 p. The plugin uses Textpattern's "Form snippets":http://textpattern.net/wiki/index.php?title=Forms to power it's external output pages. You create a normal misc form with a prefixed name, and that form is then can be requested and access via direct URL by referring its name.
 
-p. The term _external_ directly refers to no need of sections or page templates. Only thing you need is a form. In essence the plugin is for accessing Forms output via a URL.
+p. The term _external_ directly refers to separateness and freeing dependency from sections and page templates while still serving client-side content. Only thing you need to serve content is a form. In essence the plugin is for accessing a form's output via a callback URL.
 
 h2. List of features
 
-* "Forms":http://textpattern.net/wiki/index.php?title=Forms that names are prefixed with @rah_eo_@ can be requested, and their output accessed, directly using a URL.
-* In addition to normal forms, these special Forms can contain HTTP header lines. Lines at the beginning of the form that start with @;@ are treated as headers.
+* "Form partials":http://textpattern.net/wiki/index.php?title=Forms that names are prefixed with @rah_eo_@ can be requested, and their output accessed, directly using a public URL.
+* In addition to normal form partials, these special forms can contain HTTP header lines. Lines at the beginning of the form staring with a semicolon are treated as headers.
+* Form partials can be served using different content-type by appending file extension to the name.
 
 h2. Requirements
 
@@ -20,13 +21,19 @@ p. Rah_external_output's minimum requirements:
 * Textpattern v4.4.1 or newer.
 * PHP5 or newer.
 
-h2. Installation
+h2. Installing
 
-p. The general behavior stands: paste plugin code to the plugin installer textarea and run the automatic setup. Then just activate the plugin and you are ready to use the plugin's features.
+p. The general behavior stands when it comes to installing rah_external_ouput. No extra steps or configuration that variates from normal is needed.
+
+# Download plugin installation file and copy its contents to clipboard.
+# Navigate to "Plugins":http://textpattern.net/wiki/index.php?title=Plugins panel and paste the copied code into the _Install plugin_ field, and click *Upload*.
+# You will be shown a preview of the plugin and its documentation. Click *Install* at the bottom of the page.
+# You will be returned to the plugin list when the plugin has been installed. Now activate the plugin by clicking its *No* link, which toggles the status to *Yes* and actives it.
+# The plugin is now installed and activated. All done.
 
 h2. Usage
 
-p. Rah_external_output treats misc Forms that are prefixed with @rah_eo_@ as a "external" content-type snippets. These special prefixed Forms can be accessed using a URL. This URL would follow pattern:
+p. Rah_external_output treats misc type forms partials that are prefixed with @rah_eo_@ as a "external" content-type snippets. These special prefixed Forms can be accessed using a URL. This URL would follow a pattern:
 
 bc. http://example.com/?rah_external_output=FormNameWithoutPrefix
 
@@ -36,11 +43,13 @@ h2. Custom HTTP headers
 
 p. In addition to a form template's normal features, rah_external_output's special forms support sending custom HTTP headers, including a content-type header.
 
-p. All lines at the beginning of the form starting with semicolon (@;@) are sent as HTTP headers. The lines can should be placed at the beginning of a form, starting from the first line. HTTP header lines and can not be preceded by any white-space or linebreaks. HTTP header lines follow the normal syntax you would expect from a HTTP header field definitions. A line consist of header property, the field, followed by a colon (@:@), followed by a value.
+p. All lines at the beginning of the form starting with a semicolon (@;@) are sent as HTTP headers. These lines can should be placed at the very beginning of a form, starting from the first line. HTTP header lines and can not be preceded by any white-space or empty lines.
+
+p. HTTP header lines follow the normal syntax you would expect from a HTTP header field definitions. A line consist of header property, also commonly referred as the field, followed by a colon (@:@) and a value.
 
 bc. ; Property: Value
 
-p. A form supports multiple number of header lines. Each subsequent line starting with a semicolon is sent as a HTTP header.
+p. A form supports unlimited number of header lines. Each subsequent line starting with a semicolon is sent as a HTTP header.
 
 bc. ; Content-type: text/javascript
 ; Cache-Control: no-store, no-cache, must-revalidate, pre-check=0, post-check=0, max-age=0
@@ -48,7 +57,7 @@ bc. ; Content-type: text/javascript
 ; Last-Modified: Wed, 1 Jan 2025 05:00:00 GMT
 ; Pragma: no-cache
 
-p. Using these HTTP header lines, visitor can be redirected, or document's content-type, encoding, caching or timestamp attributes can be changed. A form that starts with following header line would be sent as a plain-text.
+p. Using these HTTP header lines visitor can be redirected, or document's content-type, encoding, caching or timestamp attributes changed. A form that starts with a following header line would be sent as a plain-text.
 
 bc.. ; Content-type: text/plain
 
@@ -56,11 +65,13 @@ bc.. ; Content-type: text/plain
 	<txp:permlink><txp:title /></txp:permlink>
 </txp:article_custom>
 
-p. Note that for security reasons, HTTP header lines do not allow Textpattern tags. Headers are collected from the form before any Textpattern tags are parsed. This to prevent any type of header injections that could occur otherwise.
+p. Note that for security reasons HTTP header lines can not contain Textpattern tags. Headers are collected from the source code before any Textpattern tags are processed. This to prevent any type of header injections that could occur otherwise.
 
 h2. Content-types and extensions
 
 p. In addition to custom HTTP headers, a snippet's content-type can be set using file extensions, appended to the form's name. Supported extensions are @.json@, @.js@, @.xml@, @.css@, @.txt@ and @.html@.
+
+p. If a form is named as @rah_eo_jsontable.json@, the content would be served as a JSON presentation when @http://example.com/?rah_external_output=jsontable.json@ is being accessed.
 
 h2. Tag trace and debugging
 
