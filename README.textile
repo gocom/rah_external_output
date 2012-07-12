@@ -66,6 +66,10 @@ h2. Tag trace and debugging
 
 p. As Textpattern's normal page templates, rah_external_output's snippets support "tag traces.":http://textpattern.net/wiki/index.php?title=tag_trace In "debugging mode,":http://textpattern.net/wiki/index.php?title=Basic_Preferences#Production_Status a tag trace is appended to the HTML output of each snippet that ends with @.html@ extension. As a tag trace on a normal page, the trace tells you which Textpattern tags are being executed and their outcome.
 
+h2. Example uses and snippets
+
+p. As the plugin can be used to serve any type of document and content there is no to say what you should do with it or not. To give out a simple idea how you could benefit from the plugin, please see our "examples directory on GitHub":https://github.com/gocom/rah_external_output/tree/master/examples. The directory contains some basic, yet real-world proof, examples. XML sitemap generation contains all your content and some JSON are covered say the least.
+
 h2. For developers
 
 p. The plugin comes with couple things targeted to developers. One of these is dedicated callback event which is fired each time a snippet is viewed. The callback in question is named @rah_external_output.snippet_end@ and is executed at the very end of a snippet.
