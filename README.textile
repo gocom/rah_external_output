@@ -66,6 +66,12 @@ h2. Tag trace and debugging
 
 p. As Textpattern's normal page templates, rah_external_output's snippets support "tag traces.":http://textpattern.net/wiki/index.php?title=tag_trace In "debugging mode,":http://textpattern.net/wiki/index.php?title=Basic_Preferences#Production_Status a tag trace is appended to the HTML output of each snippet that ends with @.html@ extension. As a tag trace on a normal page, the trace tells you which Textpattern tags are being executed and their outcome.
 
+h2. For developers
+
+p. The plugin comes with couple things targeted to developers. One of these is dedicated callback event which is fired each time a snippet is viewed. The callback in question is named @rah_external_output.snippet_end@ and is executed at the very end of a snippet.
+
+p. There is also a global variable that can be used to add extra recognized mime-types to the plugin. The variable is named @$rah_external_output_mime@ and takes an array map of @extension => mime/type@ key-value pairs.
+
 h2. Changelog
 
 h3. Version 1.0 - upcoming
