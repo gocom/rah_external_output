@@ -43,7 +43,7 @@ h2. Custom HTTP headers
 
 p. In addition to a form template's normal features, rah_external_output's special forms support sending custom HTTP headers, including a content-type header.
 
-p. All lines at the beginning of the form starting with a semicolon (@;@) are sent as HTTP headers. These lines can should be placed at the very beginning of a form, starting from the first line. HTTP header lines and can not be preceded by any white-space or empty lines.
+p. All lines at the beginning of the form starting with a semicolon (@;@) are sent as HTTP headers. These lines should be placed at the very beginning of a form, starting from the first line. HTTP header lines and can not be preceded by any white-space or empty lines.
 
 p. HTTP header lines follow the normal syntax you would expect from a HTTP header field definitions. A line consist of header property, also commonly referred as the field, followed by a colon (@:@) and a value.
 
