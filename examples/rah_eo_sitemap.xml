@@ -14,7 +14,7 @@
 		<url><loc><txp:permlink /></loc></url>
 	</txp:article_custom>
 	
-	<txp:file_download_list wraptag="" break="">
+	<txp:file_download_list limit="9999" wraptag="" break="">
 		<url><loc><txp:file_download_link /></loc></url>
 	</txp:file_download_list>
 	
