@@ -175,7 +175,7 @@ class rah_external_output {
 		$hu = escape_js(hu);
 	
 		$js = <<<EOF
-			(function() {
+			$(document).ready(function(){
 				var input = $('input[name="name"]');
 			
 				if(input.val().indexOf('rah_eo_') !== 0) {
@@ -190,7 +190,7 @@ class rah_external_output {
 					e.preventDefault();
 					window.open(uri);
 				});
-			})();
+			});
 EOF;
 
 		echo script_js($js);
