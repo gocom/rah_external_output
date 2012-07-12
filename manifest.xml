@@ -1,10 +1,10 @@
 <manifest>
 
 	<name>rah_external_output</name>
-	<description>Output external content-type snippets</description>
+	<description>External content-type snippets</description>
 
 	<version>0.9</version>
-	<type public="0" pub-admin="1" library="2" admin-only="3">1</type>
+	<type>1</type>
 
 	<author>Jukka Svahn</author>
 	<author_uri>http://rahforum.biz</author_uri>
