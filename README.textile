@@ -41,7 +41,7 @@ p. Where @example.com@ is the site's URL and @FormNameWithoutPrefix@ is the form
 
 h2. Custom HTTP headers
 
-p. In addition to a form template's normal features, rah_external_output's special forms support sending custom HTTP headers, including a content-type header.
+p. In addition to a form partial's normal features, rah_external_output's special forms support sending custom HTTP headers, including a content-type header.
 
 p. All lines at the beginning of the form starting with a semicolon (@;@) are sent as HTTP headers. These lines should be placed at the very beginning of a form, starting from the first line. HTTP header lines and can not be preceded by any white-space or empty lines.
 
@@ -91,7 +91,7 @@ h2. Changelog
 
 h3. Version 1.0 - upcoming
 
-* Removed: Plugin's own user interface. The plugin now uses @rah_eo_@ prefixed Form templates and integrates with Forms panel.
+* Removed: Plugin's own user interface. The plugin now uses @rah_eo_@ prefixed form partials and integrates with Forms panel.
 * Removed: @<txp:rah_external_output />@ tag. As forms are used, normal and more flexible "output_form":http://textpattern.net/wiki/index.php?title=output_form tag can be used.
 * Removed: Raw PHP support to comply with "r3706.":http://code.google.com/p/textpattern/source/detail?r=3706
 * Added: Ability to set snippet content-type using file extension in the name.
