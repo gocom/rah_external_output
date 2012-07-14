@@ -136,20 +136,19 @@ class rah_external_output {
 			header('Content-type: '.$mime[$ext].'; charset=utf-8');
 		}
 		
-		$r = explode(n, $r);
+		$lines = explode(n, $r);
 		
-		foreach($r as $key => $line) {
+		foreach($lines as $line) {
 			
 			if(strpos($line, ';') !== 0) {
 				break;
 			}
 			
-			header(trim(substr($line, 1)));
-			unset($r[$key]);
+			header(trim(substr(array_shift($lines), 1)));
 		}
 
 		set_error_handler('tagErrorHandler');
-		echo parse(parse(implode(n, $r)));
+		echo parse(parse(implode(n, $lines)));
 		restore_error_handler();
 
 		if($ext == 'html' && $production_status == 'debug') {
