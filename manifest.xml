@@ -10,7 +10,7 @@
 	<author_uri>http://rahforum.biz</author_uri>
 
 	<order>5</order>
-	<flags>3</flags>
+	<flags>2</flags>
 
 	<help file="./README.textile" />
 
