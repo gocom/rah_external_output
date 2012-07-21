@@ -1,5 +1,7 @@
 h1. rah_external_output
 
+p. "Project page":http://rahforum.biz/plugins/rah_external_output | "Twitter":http://twitter.com/gocom | "GitHub":https://github.com/gocom/rah_external_output | "Support forum":http://forum.textpattern.com/viewtopic.php?id=30664 | "Donate":http://rahforum.biz/donate/rah_external_output
+
 p. Rah_external_output is a "Textpattern":http://textpattern.com plugin that can be used create custom content-type snippets. These snippets can be requested with a publicly accessible URL, and used as pages or to provide site's content over in form of JSON or XML to JavaScript or across domains.
 
 p. While these snippets can act as pages, they independent from Textpattern's normal content model. Snippets won't required or overpopulate "page templates":http://textpattern.net/wiki/index.php?title=Pages or "sections":http://textpattern.net/wiki/index.php?title=Sections.
