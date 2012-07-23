@@ -1,9 +1,9 @@
 {
 <txp:images limit="50" sort="id desc" break=",">
 	"<txp:image_info type="id" />" : {
-		"url" : "<txp:image_url />",
-		"thumb" : "<txp:image_url thumbnail="1" />",
-		"caption" : <txp:rah_function call="json_encode" s='<txp:image_info type="caption" escape="html" />' />
+		"url" : <txp:rah_function call="json_encode" value='<txp:image_url />' />,
+		"thumb" : <txp:rah_function call="json_encode" value='<txp:image_url thumbnail="1" />' />,
+		"caption" : <txp:rah_function call="json_encode" value='<txp:image_info type="caption" escape="html" />' />
 	}
 </txp:images>
 }

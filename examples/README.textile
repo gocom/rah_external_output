@@ -8,9 +8,9 @@ p. The snippet generates a JSON presentation of last 50 images. Requires "rah_fu
 
 bc. {
 	"1" : {
-		"url" : "http://example.com/images/1.png",
-		"thumb" : "http://example.com/images/1t.png",
-		"caption" : "description"
+		"url" : "http:\/\/example.com\/images\/1.png",
+		"thumb" : "http:\/\/example.com\/images\/1t.png",
+		"caption" : "My first image upload."
 	}
 	[, ...]
 }
