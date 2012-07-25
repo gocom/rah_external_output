@@ -8,7 +8,7 @@ p. While these snippets can act as pages, they are independent from Textpattern'
 
 p. This makes the plugin ideal for generating various publicly accessible snippets, including XML feeds or JavaScript Object Notations that can be then used to feed site's content to JavaScript applications, build application layers or to transmit content across domains.
 
-p. Rah_external_output uses Textpattern's "form partials":http://textpattern.net/wiki/index.php?title=Forms to power its snippets. A form partial that's name is prefixed with @rah_eo_@ can be accessed directly with a URL, creating its own, independed page. The term _external_ directly refers to separateness and independency from sections and page templates while still serving client-side content.
+p. Rah_external_output uses Textpattern's "form partials":http://textpattern.net/wiki/index.php?title=Forms to power its snippets. A form partial that's name is prefixed with @rah_eo_@ can be accessed directly with a URL, creating its own, independent, page. The term _external_ directly refers to separateness and independency from sections and page templates while still serving client-side content.
 
 h2. List of features
 
@@ -60,7 +60,7 @@ p. That page is the snippets publicly accessible URL, which you can freely use a
 
 bc. http://example.com/?rah_external_output=hello_world
 
-p. Where @example.com@ is your site's URL and @hello_world@ the name of the snippet. When accessing the snippet, you should see following output:
+p. Where @example.com@ is your site's URL and @hello_world@ the name of the snippet. When accessing the snippet, you should see the following output:
 
 bc. <MySiteName says> Hello World!
 
@@ -88,7 +88,7 @@ bc. ; Content-type: text/javascript
 ; Last-Modified: Wed, 1 Jan 2025 05:00:00 GMT
 ; Pragma: no-cache
 
-p. Using these HTTP header lines visitor can be redirected, or document's content-type, encoding, caching or timestamp attributes changed. A form that starts with a following header line would be sent as a plain-text:
+p. Using these HTTP header lines visitor can be redirected, or document's content-type, encoding, caching or timestamp attributes changed. A form that starts with the following header line would be sent as a plain-text:
 
 bc.. ; Content-type: text/plain
 
