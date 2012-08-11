@@ -13,14 +13,7 @@
  * http://www.gnu.org/licenses/gpl-2.0.html
  */
 
-	if(@txpinterface == 'admin') {
-		rah_external_output::install();
-		register_callback(array('rah_external_output', 'install'), 'plugin_lifecycle.rah_external_output');
-		register_callback(array('rah_external_output', 'view'), 'form');
-	}
-	else {
-		register_callback(array('rah_external_output', 'get_snippet'), 'textpattern');
-	}
+	new rah_external_output();
 
 class rah_external_output {
 
@@ -96,10 +89,20 @@ class rah_external_output {
 	}
 
 	/**
+	 * Constructor
+	 */
+
+	public function __construct() {
+		register_callback(array(__CLASS__, 'install'), 'plugin_lifecycle.'.__CLASS__);
+		register_callback(array($this, 'view'), 'form');
+		register_callback(array($this, 'get_snippet'), 'textpattern');
+	}
+
+	/**
 	 * Outputs external snippets
 	 */
 
-	static public function get_snippet() {
+	public function get_snippet() {
 		
 		global $microstart, $qcount, $qtime, $production_status, $txptrace, $rah_external_output_mime;
 		
@@ -168,7 +171,7 @@ class rah_external_output {
 	 * Adds a view link to the form editor
 	 */
 	
-	static public function view() {
+	public function view() {
 		
 		$view = escape_js(gTxt('view'));
 		$hu = escape_js(hu);
