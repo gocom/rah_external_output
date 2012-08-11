@@ -134,6 +134,10 @@ $rah_external_output_mime['svg'] = 'image/svg+xml';
 
 h2. Changelog
 
+h3. Version 1.1 - upcoming
+
+* Dropped code path used as plugin cache fallback. Now relays on existence of plugin-lifecycle callbacks.
+
 h3. Version 1.0 - 2012/07/14
 
 * Removed: Plugin's own user interface. The plugin now uses @rah_eo_@ prefixed form partials and integrates with Forms panel.
