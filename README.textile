@@ -136,8 +136,9 @@ h2. Changelog
 
 h3. Version 1.1 - upcoming
 
-* Dropped code path used as plugin cache fallback. Now relays on existence of plugin-lifecycle callbacks.
-* Dropped migration cleaner deployed in v0.6. Left over table @rah_external_output_mime@ can be dropped manually.
+* Changed: Now doesn't uninstall @rah_eo_@ prefixed form partials with the plugin. These forms could be used for something else than just as the plugin's snippets.
+* Dropped: code path used as plugin cache fallback. Now relays on existence of plugin-lifecycle callbacks.
+* Dropped: migration cleaner deployed in v0.6. Left over table @rah_external_output_mime@ can be dropped manually.
 
 h3. Version 1.0 - 2012/07/14
 
