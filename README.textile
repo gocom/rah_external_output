@@ -20,8 +20,8 @@ h2. Requirements
 
 p. Rah_external_output's minimum requirements:
 
-* Textpattern v4.4.1 or newer.
-* PHP5 or newer.
+* Textpattern 4.4.1 or newer.
+* PHP 5.2 or newer.
 
 h2. Installing
 
