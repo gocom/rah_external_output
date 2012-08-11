@@ -43,17 +43,9 @@ class rah_external_output {
 			
 			return;
 		}
-	
-		$current = isset($prefs['rah_external_output_version']) ? 
-			(string) $prefs['rah_external_output_version'] : 'base';
 		
-		if($current === self::$version)
+		if((string) get_pref(__CLASS__.'_version') === self::$version) {
 			return;
-		
-		if($current == 'base') {
-			@safe_query(
-				'DROP TABLE IF EXISTS '.safe_pfx('rah_external_output_mime')
-			);
 		}
 		
 		@$rs = safe_rows(
@@ -84,8 +76,8 @@ class rah_external_output {
 			@safe_query('DROP TABLE IF EXISTS '.safe_pfx('rah_external_output'));
 		}
 		
-		set_pref('rah_external_output_version', self::$version, 'rah_exo', 2, '', 0);
-		$prefs['rah_external_output_version'] = self::$version;
+		set_pref(__CLASS__.'_version', self::$version, 'rah_exo', 2, '', 0);
+		$prefs[__CLASS__.'_version'] = self::$version;
 	}
 
 	/**
@@ -106,7 +98,7 @@ class rah_external_output {
 		
 		global $microstart, $qcount, $qtime, $production_status, $txptrace, $rah_external_output_mime;
 		
-		$name = gps('rah_external_output');
+		$name = gps(__CLASS__);
 		
 		if($name === '' || !is_string($name)) {
 			return;
@@ -163,7 +155,7 @@ class rah_external_output {
 				n.comment('txp tag trace: '.n.str_replace('--', '&shy;&shy;', implode(n, (array) $txptrace)));
 		}
 		
-		callback_event('rah_external_output.snippet_end');
+		callback_event(__CLASS__.'.snippet_end');
 		exit;
 	}
 
