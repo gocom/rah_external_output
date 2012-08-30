@@ -8,11 +8,11 @@ p. While these snippets can act as pages, they are independent from Textpattern'
 
 p. This makes the plugin ideal for generating various publicly accessible snippets, including XML feeds or JavaScript Object Notations that can be then used to feed site's content to JavaScript applications, build application layers or to transmit content across domains.
 
-p. Rah_external_output uses Textpattern's "form partials":http://textpattern.net/wiki/index.php?title=Forms to power its snippets. A form partial that's name is prefixed with @rah_eo_@ can be accessed directly with a URL, creating its own, independent, page. The term _external_ directly refers to separateness and independency from sections and page templates while still serving client-side content.
+p. Rah_external_output uses Textpattern's "form partials":http://textpattern.net/wiki/index.php?title=Forms to power its snippets. A form partial that's name is prefixed with a @rah_eo_@ can be accessed directly with a URL, creating its own, independent, page. The term _external_ directly refers to separateness and independency from sections and page templates while still serving client-side content.
 
 h2. List of features
 
-* "Form partials":http://textpattern.net/wiki/index.php?title=Forms prefixed with @rah_eo_@ can be requested, and their output accessed, directly using a public URL.
+* "Form partials":http://textpattern.net/wiki/index.php?title=Forms prefixed with a @rah_eo_@ can be requested, and their output accessed, directly using a public URL.
 * In addition to normal form partials, these special forms, snippets, can contain HTTP header lines. Lines at the beginning of the form staring with a semicolon are treated as headers.
 * Form partials can be served using different content-type by appending file extension to the name.
 
@@ -35,28 +35,28 @@ p. The general behavior stands when it comes to installing rah_external_ouput. N
 
 h2. Basics
 
-p. Rah_external_output treats misc type "form partials":http://textpattern.net/wiki/index.php?title=Forms that names are prefixed with @rah_eo_@ prefix as a "external" content-type snippets. These special prefixed forms can be accessed using a public callback URL. This URL follows a pattern:
+p. Rah_external_output treats any misc type "form partial":http://textpattern.net/wiki/index.php?title=Forms that name us prefixed with a @rah_eo_@ prefix as a "external" content-type snippet. These special prefixed forms can be accessed using a public callback URL. This URL follows the pattern:
 
 bc. http://example.com/?rah_external_output=FormNameWithoutPrefix
 
-p. Where @example.com@ is the site's URL and @FormNameWithoutPrefix@ is the form's name excluding the prefix. The above URL would output a misc form named @rah_eo_FormNameWithoutPrefix@.
+p. Where @example.com@ is the site's URL and @FormNameWithoutPrefix@ is the form's name excluding the prefix. The above URL would output a misc form named as @rah_eo_FormNameWithoutPrefix@.
 
 h2. Creating your first snippet
 
-p. Creating a new rah_external_output's custom form, a snippet. would follow the same steps as "any other form":http://textpattern.net/wiki/index.php?title=Forms#Creating_a_New_Form. Go to Forms panel, located under "Presentation":http://textpattern.net/wiki/index.php?title=Presentation section, and click the _Create new form_ button at the top of the column on the right. This will open a new empty editor.
+p. Creating a new rah_external_output's custom form, a snippet, would follow the same steps as "any other form":http://textpattern.net/wiki/index.php?title=Forms#Creating_a_New_Form. Go to Forms panel, located under "Presentation":http://textpattern.net/wiki/index.php?title=Presentation, and click the _Create new form_ button at the top of the column on the right. This will open a new empty editor.
 
-p. As with any form partial, you can type in any Textpattern markup you wish to the large code field. This is what your snippet will output when accessed using its URL. For now, type in the field this:
+p. As with any form partial, you can type in any Textpattern markup you wish to the large code field. This field contains what your snippet will output when accessed using its URL. For now, type in the field this:
 
 bc. ; Content-type: text/plain
 <<txp:site_name /> says> Hello World!
 
-p. You can then give the snippet a name by typing in it in the _Name_ field. This name will be also used for the snippet's URL. To register a form partial as a rah_external_output's snippet, the name should be prefixed with @rah_eo_@. For now, give the form a name @rah_eo_hello_world@.
+p. You can then give the snippet a name by typing it in the _Name_ field. This name will be also used for the snippet's URL. To register a form partial as a rah_external_output's snippet, the name should be prefixed with @rah_eo_@. For now, give the form a name @rah_eo_hello_world@.
 
-p. Last but not least is a _Type_. The most appropriate type for a snippet is a _misc_, but it can be anything if you so wish. Form types are for the most part visual, used for organizing things on the admin-side, from _Write_ panel's _Output form_ field to the _Tag Builder_.
+p. Last but not least is a _Type_. The most appropriate type for a snippet is a _misc_, but it can be anything if you so wish. Form types are for the most part visual, used for organizing things on the admin-side, from the Write panel's "Override Form":http://textpattern.net/wiki/index.php?title=Write#Override_Form field to the Tag Builder.
 
-p. When you have done with the code, giving it a name and selecting type, hit _Save_ button. The snippet is now ready for being accessed. After you have saved the editor, you will notice that there is a _View_ link next to the _Name_ field. By clicking the link you will be taken to the snippet's generated page.
+p. When you have done with the code, giving it a name and selecting a type, hit the *Save* button. The snippet is now ready for being accessed. After you have saved the editor, you will notice that there is a _View_ link next to the _Name_ field. By clicking the link you will be taken to the snippet's generated page.
 
-p. That page is the snippets publicly accessible URL, which you can freely use as a page, to serve content to applications and use in client-side scripts. For the snippet named @rah_eo_hello_world@ you just created, this URL would be:
+p. That page is the snippets publicly accessible URL, which you can freely use as a page, to serve content to applications and use in client-side scripts. For the snippet @rah_eo_hello_world@ you just created, this URL would be:
 
 bc. http://example.com/?rah_external_output=hello_world
 
@@ -64,7 +64,7 @@ p. Where @example.com@ is your site's URL and @hello_world@ the name of the snip
 
 bc. <MySiteName says> Hello World!
 
-p. Where @MySiteName@ is the name of the site. As you notice the, the page is served as a plain text opposed to HTML. This is due to a HTTP header line the snippet's code included:
+p. Where @MySiteName@ is the name of the site. As you may notice, the page is served as a plain text opposed to HTML. This is due to a HTTP header line the snippet's code included:
 
 bc. ; Content-type: text/plain
 
@@ -76,7 +76,7 @@ p. In addition to a form partial's normal features, rah_external_output's specia
 
 p. All lines at the beginning of the form starting with a semicolon (@;@) are sent as HTTP headers. These lines should be placed at the very beginning of a form, starting from the first line. HTTP header lines can not be preceded by any white-space or empty lines.
 
-p. HTTP header lines follow the normal syntax you would expect from a HTTP header field definitions. A line consist of header property, also commonly referred as a field, followed by a colon (@:@) and a value.
+p. HTTP header lines follow the normal syntax you would expect from a HTTP header field definitions. A line consist of a header property, also commonly referred as a field, followed by a colon (@:@) and a value.
 
 bc. ; Property: Value
 
@@ -96,7 +96,7 @@ bc.. ; Content-type: text/plain
 	<txp:permlink><txp:title /></txp:permlink>
 </txp:article_custom>
 
-p. Note that for security reasons HTTP header lines can not contain Textpattern tags. Headers are collected from the source code before any Textpattern tags are processed. This to prevent any type of header injections that could occur otherwise.
+p. Note that for security reasons HTTP header lines can not contain Textpattern tags. Headers are collected from the source code before any Textpattern tags are processed. This is to prevent any type of header injections that could occur otherwise.
 
 h2. Content-types and file extensions
 
@@ -106,27 +106,27 @@ p. If a form is named as a @rah_eo_jsontable.json@, the snippet would be served 
 
 h2. Tag trace and debugging
 
-p. As Textpattern's normal page templates, rah_external_output's snippets support "tag traces":http://textpattern.net/wiki/index.php?title=tag_trace. In "debugging mode":http://textpattern.net/wiki/index.php?title=Basic_Preferences#Production_Status, a tag trace is appended to the HTML output of each snippet that ends with a @.html@ extension. As a tag trace on a normal page, the trace tells you which Textpattern tags are being executed and their outcome.
+p. As with Textpattern's normal page templates, rah_external_output's snippets support "tag traces":http://textpattern.net/wiki/index.php?title=tag_trace. In "debugging mode":http://textpattern.net/wiki/index.php?title=Basic_Preferences#Production_Status, a tag trace is appended to the HTML output of each snippet that ends with a @.html@ extension. As a tag trace on a normal page, the trace tells you which Textpattern tags are being executed and their outcome.
 
-h2. Example uses and snippets
+h2. Example snippets
 
-p. As the plugin can be used to serve any type of snippet and content there is no to say what you should do with it or not. To give out a simple idea how you could benefit from the plugin, please see our "examples directory on GitHub":https://github.com/gocom/rah_external_output/tree/master/examples. The directory contains some basic, yet real-world proof examples. Includes XML sitemap generation and some JSON building.
+p. As the plugin can be used to serve any type of snippet and content there is no to say what you should do with it or not. To give out a simple idea how you could benefit from the plugin, please see our "examples directory on GitHub":https://github.com/gocom/rah_external_output/tree/master/examples. The directory contains some basic, yet real-world proof examples. Examples include XML sitemap generation and some JSON serving.
 
 h2. For developers
 
-p. The plugin comes with couple things targeted to developers.
+p. The plugin comes with few features targeted to developers.
 
 h3. Callback
 
-p. One of these is a dedicated callback event which is fired when a snippet is viewed. The callback in question is named @rah_external_output.snippet_end@ and is executed at the very end of a snippet. This callback can be used like any other Textpattern callback event. Hooking to the event happens using @register_callback()@ function.
+p. One of these developer features is a callback event which is fired when a snippet is viewed. The callback in question is named @rah_external_output.snippet_end@ and is executed at the very end of a snippet. This callback can be used like any other Textpattern's callback event. Hooking to the event happens using @register_callback()@ function.
 
 bc. register_callback(callback, 'rah_external_output.snippet_end');
 
-p. Please see "Plugin Basic":http://textpattern.net/wiki/index.php?title=Plugin_basics for more information about plugin development and callbacks.
+p. Please see "Plugin Basics":http://textpattern.net/wiki/index.php?title=Plugin_basics for more information about plugin development and callbacks.
 
 h3. File extensions
 
-p. There is also a global variable that can be used to add extra recognized MIME types to the stack of file extensions. The variable is named @$rah_external_output_mime@ and takes an array map of @extension => mime/type@ key-value pairs.
+p. Rah_external_output allows extending the recognized MIME types and extensions. This can be done by modifying a global variable. The variable is named @$rah_external_output_mime@ and it takes an array map of @extension => mime/type@ key-value pairs.
 
 bc. global $rah_external_output_mime;
 $rah_external_output_mime['png'] = 'image/png';
@@ -137,8 +137,8 @@ h2. Changelog
 h3. Version 1.1 - upcoming
 
 * Changed: Now doesn't uninstall @rah_eo_@ prefixed form partials with the plugin. These forms could be used for something else than just as the plugin's snippets.
-* Dropped: code path used as plugin cache fallback. Now relays on existence of plugin-lifecycle callbacks.
-* Dropped: migration cleaner deployed in v0.6. Left over table @rah_external_output_mime@ can be dropped manually.
+* Dropped: code path used as a plugin cache fallback. Now relays on existence of plugin-lifecycle callbacks.
+* Dropped: migration cleaner deployed in v0.6. Is no longer relevant.
 
 h3. Version 1.0 - 2012/07/14
 
@@ -190,7 +190,7 @@ h3. Version 0.6 - 2011/04/15
 
 h3. Version 0.5 - 2010/04/11
 
-* Added _disable_ and _activate_ actions to multiedit feature.
+* Added _disable_ and _activate_ actions to the multiedit feature.
 
 h3. Version 0.4 - 2009/06/08
 
