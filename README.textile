@@ -134,6 +134,10 @@ $rah_external_output_mime['svg'] = 'image/svg+xml';
 
 h2. Changelog
 
+h3. Version 1.0.2 - upcoming
+
+* Improved: Cleaned up installer.
+
 h3. Version 1.0.1 - 2012/08/31
 
 * Changed: Now doesn't uninstall @rah_eo_@ prefixed form partials with the plugin. These forms could be used for something else than just as the plugin's snippets.
