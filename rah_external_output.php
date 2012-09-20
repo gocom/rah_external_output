@@ -71,7 +71,7 @@ class rah_external_output {
 			@safe_query('DROP TABLE IF EXISTS '.safe_pfx('rah_external_output'));
 		}
 		
-		set_pref(__CLASS__.'_version', self::$version, 'rah_exo', 2, '', 0);
+		set_pref(__CLASS__.'_version', self::$version, 'rah_exo', PREF_HIDDEN);
 	}
 
 	/**
