@@ -15,14 +15,25 @@
 
 	new rah_external_output();
 
+/**
+ * The plugin class.
+ */
+
 class rah_external_output {
+
+	/**
+	 * Version number.
+	 *
+	 * @var string
+	 */
 
 	static public $version = '1.0.1';
 
 	/**
-	 * The unified installer and uninstaller
+	 * The installer.
+	 *
 	 * @param string $event Admin-side event.
-	 * @param string $step Admin-side, plugin-lifecycle step.
+	 * @param string $step  Admin-side, plugin-lifecycle step.
 	 */
 
 	static public function install($event='', $step='') {
@@ -75,7 +86,7 @@ class rah_external_output {
 	}
 
 	/**
-	 * Constructor
+	 * Constructor.
 	 */
 
 	public function __construct() {
@@ -85,7 +96,7 @@ class rah_external_output {
 	}
 
 	/**
-	 * Outputs external snippets
+	 * Outputs external snippets.
 	 */
 
 	public function get_snippet() {
@@ -154,9 +165,9 @@ class rah_external_output {
 	}
 
 	/**
-	 * Adds a view link to the form editor
+	 * Adds a view link to the form editor.
 	 */
-	
+
 	public function view() {
 		
 		$view = escape_js(gTxt('view'));
