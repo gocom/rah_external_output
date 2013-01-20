@@ -207,5 +207,3 @@ EOF;
 		echo script_js($js);
 	}
 }
-
-?>
