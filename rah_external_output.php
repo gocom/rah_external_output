@@ -36,7 +36,7 @@ class rah_external_output
 	 * @param string $step  Admin-side, plugin-lifecycle step.
 	 */
 
-	static public function install($event = '', $step = '')
+	public function install($event = '', $step = '')
 	{	
 		global $prefs;
 		
@@ -94,7 +94,7 @@ class rah_external_output
 
 	public function __construct()
 	{
-		register_callback(array(__CLASS__, 'install'), 'plugin_lifecycle.rah_external_output');
+		register_callback(array($this, 'install'), 'plugin_lifecycle.rah_external_output');
 		register_callback(array($this, 'view'), 'form');
 		register_callback(array($this, 'get_snippet'), 'textpattern');
 	}
