@@ -50,7 +50,7 @@ class rah_external_output
 			return;
 		}
 
-		if ((string) get_pref(__CLASS__.'_version') === self::$version)
+		if ((string) get_pref('rah_external_output_version') === self::$version)
 		{
 			return;
 		}
@@ -85,7 +85,7 @@ class rah_external_output
 			@safe_query('DROP TABLE IF EXISTS '.safe_pfx('rah_external_output'));
 		}
 
-		set_pref(__CLASS__.'_version', self::$version, 'rah_exo', PREF_HIDDEN);
+		set_pref('rah_external_output_version', self::$version, 'rah_exo', PREF_HIDDEN);
 	}
 
 	/**
@@ -94,7 +94,7 @@ class rah_external_output
 
 	public function __construct()
 	{
-		register_callback(array(__CLASS__, 'install'), 'plugin_lifecycle.'.__CLASS__);
+		register_callback(array(__CLASS__, 'install'), 'plugin_lifecycle.rah_external_output');
 		register_callback(array($this, 'view'), 'form');
 		register_callback(array($this, 'get_snippet'), 'textpattern');
 	}
@@ -107,7 +107,7 @@ class rah_external_output
 	{	
 		global $microstart, $qcount, $qtime, $production_status, $txptrace, $rah_external_output_mime;
 
-		$name = gps(__CLASS__);
+		$name = gps('rah_external_output');
 
 		if ($name === '' || !is_string($name))
 		{
@@ -169,7 +169,7 @@ class rah_external_output
 				n.comment('txp tag trace: '.n.str_replace('--', '&shy;&shy;', implode(n, (array) $txptrace)));
 		}
 
-		callback_event(__CLASS__.'.snippet_end');
+		callback_event('rah_external_output.snippet_end');
 		exit;
 	}
 
