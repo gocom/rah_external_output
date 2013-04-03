@@ -37,9 +37,7 @@ class rah_external_output
 	 */
 
 	public function install($event = '', $step = '')
-	{	
-		global $prefs;
-		
+	{
 		if ($step == 'deleted')
 		{	
 			safe_delete(
