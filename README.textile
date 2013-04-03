@@ -136,7 +136,10 @@ h2. Changelog
 
 h3. Version 1.0.2 - upcoming
 
-* Improved: Cleaned up installer.
+* Fixed: PHP namespace compatibility.
+* Improved: Internal clean up.
+* Improved: Use Textpattern's assigned flags to ensure future compatibility.
+* Improved: Creating preferences to the memory isn't necessary.
 
 h3. Version 1.0.1 - 2012/08/31
 
