@@ -26,8 +26,8 @@ class rah_external_output
 	/**
 	 * The installer.
 	 *
-	 * @param string $event Admin-side event.
-	 * @param string $step  Admin-side, plugin-lifecycle step.
+	 * @param string $event Admin-side event
+	 * @param string $step  Admin-side, plugin-lifecycle step
 	 */
 
 	public function install($event = '', $step = '')
