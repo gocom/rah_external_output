@@ -13,12 +13,6 @@
  * http://www.gnu.org/licenses/gpl-2.0.html
  */
 
-	new rah_external_output();
-
-/**
- * The plugin class.
- */
-
 class rah_external_output
 {
 	/**
@@ -205,3 +199,5 @@ EOF;
 		echo script_js($js);
 	}
 }
+
+new rah_external_output();
