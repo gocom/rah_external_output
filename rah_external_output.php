@@ -25,23 +25,10 @@ class rah_external_output
 
 	/**
 	 * The installer.
-	 *
-	 * @param string $event Admin-side event
-	 * @param string $step  Admin-side, plugin-lifecycle step
 	 */
 
-	public function install($event = '', $step = '')
+	public function install()
 	{
-		if ($step == 'deleted')
-		{	
-			safe_delete(
-				'txp_prefs',
-				"name LIKE 'rah\_external\_output\_%'"
-			);
-
-			return;
-		}
-
 		if ((string) get_pref('rah_external_output_version') === self::$version)
 		{
 			return;
@@ -81,12 +68,22 @@ class rah_external_output
 	}
 
 	/**
+	 * Uninstaller.
+	 */
+
+	public function uninstall()
+	{
+		safe_delete('txp_prefs', "name like 'rah\_external\_output\_%'");
+	}
+
+	/**
 	 * Constructor.
 	 */
 
 	public function __construct()
 	{
-		register_callback(array($this, 'install'), 'plugin_lifecycle.rah_external_output');
+		register_callback(array($this, 'install'), 'plugin_lifecycle.rah_external_output', 'installed');
+		register_callback(array($this, 'uninstall'), 'plugin_lifecycle.rah_external_output', 'deleted');
 		register_callback(array($this, 'view'), 'form');
 		register_callback(array($this, 'get_snippet'), 'textpattern');
 	}
