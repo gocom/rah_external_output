@@ -182,8 +182,17 @@ class rah_external_output
 				}
 
 				var uri = '{$hu}?rah_external_output=' + input.val().substr(7);
-				var link = $('<a class="navlink" href="#">{$view}</a>').attr('href', uri);
-				input.after(link).after(' ');
+				var link = $('<a href="#">{$view}</a>').attr('href', uri);
+				var actions = $('.txp-actions');
+
+				if (actions.length)
+				{
+					actions.append(' ').append(link);
+				}
+				else
+				{
+					input.after(link).after(' ');
+				}
 
 				link.click(function (e)
 				{
