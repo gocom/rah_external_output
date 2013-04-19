@@ -37,7 +37,7 @@ class rah_external_output
 		@$rs = safe_rows(
 			'name, content_type, code, allow',
 			'rah_external_output',
-			'1=1'
+			'1 = 1'
 		);
 
 		if ($rs)
@@ -57,7 +57,7 @@ class rah_external_output
 	
 				@safe_insert(
 					'txp_form',
-					"name='".doSlash($name)."', type='misc', Form='".doSlash($code)."'"
+					"name = '".doSlash($name)."', type = 'misc', Form = '".doSlash($code)."'"
 				);
 			}
 
