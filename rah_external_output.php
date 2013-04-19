@@ -94,7 +94,7 @@ class rah_external_output
 
 	public function get_snippet()
 	{	
-		global $microstart, $qcount, $qtime, $production_status, $txptrace, $rah_external_output_mime;
+		global $microstart, $qcount, $qtime, $txptrace, $rah_external_output_mime;
 
 		$name = gps('rah_external_output');
 
@@ -148,7 +148,7 @@ class rah_external_output
 		echo parse(parse(implode(n, $lines)));
 		restore_error_handler();
 
-		if ($ext == 'html' && $production_status == 'debug')
+		if ($ext == 'html' && get_pref('production_status') == 'debug')
 		{
 			echo 
 				n.comment('Runtime: '.substr(getmicrotime() - $microstart, 0, 6)).
