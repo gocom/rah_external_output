@@ -137,6 +137,7 @@ h2. Changelog
 h3. Version 1.0.2 - upcoming
 
 * Fixed: PHP namespace compatibility.
+* Changed: Under Textpattern 4.6.0-dev adds the 'View' link to the new action bar.
 * Improved: Internal clean up.
 * Improved: Use Textpattern's assigned flags to ensure future compatibility.
 * Improved: Creating preferences to the memory isn't necessary.
