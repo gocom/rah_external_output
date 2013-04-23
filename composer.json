@@ -1,7 +1,7 @@
 {
 	"name": "rah/rah_external_output",
 	"description": "Content-type snippets plugin for Textpattern",
-	"keywords": ["textpattern"],
+	"keywords": ["textpattern", "plugin", "content", "snippets", "partials"],
 	"homepage": "http://rahforum.biz/plugins/rah_external_output",
 	"license": "GPL-2.0",
 	"authors": [
