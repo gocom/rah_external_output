@@ -12,9 +12,9 @@
 		}
 	],
 	"support": {
-		"issues": "https://github.com/gocom/rah_terminal/issues",
+		"issues": "https://github.com/gocom/rah_external_output/issues",
 		"forum": "http://forum.textpattern.com/viewtopic.php?id=30664",
-		"source": "https://github.com/gocom/rah_terminal"
+		"source": "https://github.com/gocom/rah_external_output"
 	},
 	"autoload": {
 		"files": []
