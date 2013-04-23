@@ -1,0 +1,30 @@
+{
+	"name": "rah/rah_external_output",
+	"description": "Content-type snippets plugin for Textpattern",
+	"keywords": ["textpattern"],
+	"homepage": "http://rahforum.biz/plugins/rah_external_output",
+	"license": "GPL-2.0",
+	"authors": [
+		{
+			"name": "Jukka Svahn",
+			"homepage": "http://rahforum.biz",
+			"role": "Developer"
+		}
+	],
+	"support": {
+		"issues": "https://github.com/gocom/rah_terminal/issues",
+		"forum": "http://forum.textpattern.com/viewtopic.php?id=30664",
+		"source": "https://github.com/gocom/rah_terminal"
+	},
+	"autoload": {
+		"files": []
+	},
+	"require": {
+		"php": ">=5.2.0"
+	},
+	"extra": {
+		"branch-alias": {
+			"dev-master": "1.x.x-dev"
+		}
+	}
+}
