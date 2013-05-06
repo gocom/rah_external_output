@@ -21,7 +21,7 @@ class rah_external_output
 	 * @var string
 	 */
 
-	static public $version = '1.0.2';
+	static public $version = '1.0.3';
 
 	/**
 	 * The installer.
