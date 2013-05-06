@@ -16,24 +16,11 @@
 class rah_external_output
 {
 	/**
-	 * Version number.
-	 *
-	 * @var string
-	 */
-
-	static public $version = '1.0.3';
-
-	/**
 	 * The installer.
 	 */
 
 	public function install()
 	{
-		if ((string) get_pref('rah_external_output_version') === self::$version)
-		{
-			return;
-		}
-
 		@$rs = safe_rows(
 			'name, content_type, code, allow',
 			'rah_external_output',
@@ -63,8 +50,6 @@ class rah_external_output
 
 			@safe_query('DROP TABLE IF EXISTS '.safe_pfx('rah_external_output'));
 		}
-
-		set_pref('rah_external_output_version', self::$version, 'rah_exo', PREF_HIDDEN);
 	}
 
 	/**
