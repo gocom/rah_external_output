@@ -134,6 +134,10 @@ $rah_external_output_mime['svg'] = 'image/svg+xml';
 
 h2. Changelog
 
+h3. Version 1.0.4 - 2013/05/07
+
+* Changed: The installer doesn't use embedded version numbers. The only purpose for the installer is to handle migrations anyway.
+
 h3. Version 1.0.3 - 2013/05/06
 
 * Composer package now uses "textpattern/lock":https://packagist.org/packages/textpattern/lock and "textpattern/installer":https://packagist.org/packages/textpattern/installer. The package installs to Textpattern without any extra configuration.

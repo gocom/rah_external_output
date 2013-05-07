@@ -1,7 +1,7 @@
 {
 	"name"        : "rah_external_output",
 	"description" : "External content-type snippets",
-	"version"     : "1.0.3",
+	"version"     : "1.0.4",
 	"type"        : 1,
 	"author"      : "Jukka Svahn",
 	"author_uri"  : "http://rahforum.biz",
