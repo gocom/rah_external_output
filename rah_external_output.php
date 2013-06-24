@@ -77,7 +77,7 @@ class rah_external_output
      */
 
     public function get_snippet()
-    {    
+    {
         global $microstart, $qcount, $qtime, $txptrace, $rah_external_output_mime;
 
         $name = gps('rah_external_output');
@@ -151,7 +151,7 @@ class rah_external_output
      */
 
     public function view()
-    {    
+    {
         $view = escape_js(gTxt('view'));
         $hu = escape_js(hu);
 
