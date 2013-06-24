@@ -4,12 +4,11 @@
  * Rah_external_output plugin for Textpattern CMS
  *
  * @author  Jukka Svahn
- * @date    2009-
  * @license GNU GPLv2
  * @link    http://rahforum.biz/plugins/rah_external_output
  *
  * Copyright (C) 2013 Jukka Svahn http://rahforum.biz
- * Licensed under GNU Genral Public License version 2
+ * Licensed under GNU General Public License version 2
  * http://www.gnu.org/licenses/gpl-2.0.html
  */
 
