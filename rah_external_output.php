@@ -12,7 +12,7 @@
  * http://www.gnu.org/licenses/gpl-2.0.html
  */
 
-class rah_external_output
+class Rah_External_Output
 {
     /**
      * The installer.
@@ -69,7 +69,7 @@ class rah_external_output
         register_callback(array($this, 'install'), 'plugin_lifecycle.rah_external_output', 'installed');
         register_callback(array($this, 'uninstall'), 'plugin_lifecycle.rah_external_output', 'deleted');
         register_callback(array($this, 'view'), 'form');
-        register_callback(array($this, 'get_snippet'), 'textpattern');
+        register_callback(array($this, 'getSnippet'), 'textpattern');
         register_callback(array($this, 'cleanURLs'), 'txp_die', '404');
     }
 
@@ -84,7 +84,7 @@ class rah_external_output
         if (!gps('rah_external_output') && $name = basename($pretext['request_uri']))
         {
         	$_GET['rah_external_output'] = $name;
-            $this->get_snippet();
+            $this->getSnippet();
         }
     }
 
@@ -92,7 +92,7 @@ class rah_external_output
      * Outputs external snippets.
      */
 
-    public function get_snippet()
+    public function getSnippet()
     {
         global $microstart, $qcount, $qtime, $txptrace, $rah_external_output_mime, $txp_error_code;
 
@@ -211,4 +211,4 @@ EOF;
     }
 }
 
-new rah_external_output();
+new Rah_External_Output();
