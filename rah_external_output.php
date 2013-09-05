@@ -70,6 +70,22 @@ class rah_external_output
         register_callback(array($this, 'uninstall'), 'plugin_lifecycle.rah_external_output', 'deleted');
         register_callback(array($this, 'view'), 'form');
         register_callback(array($this, 'get_snippet'), 'textpattern');
+        register_callback(array($this, 'cleanURLs'), 'txp_die', '404');
+    }
+
+    /**
+     * Handle clean URLs.
+     */
+
+    public function cleanURLs()
+    {
+        global $pretext;
+
+        if (!gps('rah_external_output') && $name = basename($pretext['request_uri']))
+        {
+        	$_GET['rah_external_output'] = $name;
+            $this->get_snippet();
+        }
     }
 
     /**
@@ -78,7 +94,7 @@ class rah_external_output
 
     public function get_snippet()
     {
-        global $microstart, $qcount, $qtime, $txptrace, $rah_external_output_mime;
+        global $microstart, $qcount, $qtime, $txptrace, $rah_external_output_mime, $txp_error_code;
 
         $name = gps('rah_external_output');
 
@@ -95,7 +111,12 @@ class rah_external_output
 
         if ($r === false)
         {
-            txp_die(gTxt('404_not_found'), 404);
+            if ($txp_error_code != 404)
+            {
+                txp_die(gTxt('404_not_found'), 404);
+            }
+
+            return;
         }
 
         $mime = array(
