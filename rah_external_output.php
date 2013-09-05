@@ -70,14 +70,14 @@ class Rah_External_Output
         register_callback(array($this, 'uninstall'), 'plugin_lifecycle.rah_external_output', 'deleted');
         register_callback(array($this, 'view'), 'form');
         register_callback(array($this, 'getSnippet'), 'textpattern');
-        register_callback(array($this, 'cleanURLs'), 'txp_die', '404');
+        register_callback(array($this, 'cleanRequest'), 'txp_die', '404');
     }
 
     /**
-     * Handle clean URLs.
+     * Handles clean URLs.
      */
 
-    public function cleanURLs()
+    public function cleanRequest()
     {
         global $pretext;
 
