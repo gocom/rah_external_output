@@ -52,7 +52,7 @@ bc. ; Content-type: text/plain
 
 You can then give the snippet a name by typing it in the _Name_ field. This name will be also used for the snippet's URL. To register a form partial as a rah_external_output's snippet, the name should be prefixed with @rah_eo_@. For now, give the form a name @rah_eo_hello_world@.
 
-Last but not least is a _Type_. The most appropriate type for a snippet is a _misc_, but it can be anything if you so wish. Form types are for the most part visual, used for organizing things on the admin-side, from the Write panel's "Override Form":http://textpattern.net/wiki/index.php?title=Write field to the Tag Builder.
+Last but not least is a _Type_. The most appropriate type for a snippet is a misc, but it can be anything if you so wish. Form types are for the most part visual, used for organizing things on the admin-side, from the Write panel's "Override Form":http://textpattern.net/wiki/index.php?title=Write#Override_Form field to the Tag Builder.
 
 When you have done with the code, giving it a name and selecting a type, hit the *Save* button. The snippet is now ready for being accessed. After you have saved the editor, you will notice that there is a _View_ link next to the _Name_ field. By clicking the link you will be taken to the snippet's generated page.
 
