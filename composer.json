@@ -1,25 +1,25 @@
 {
-	"name": "rah/rah_external_output",
-	"description": "Content-type snippets plugin for Textpattern",
-	"keywords": ["textpattern", "plugin", "content", "snippets", "partials"],
-	"homepage": "http://rahforum.biz/plugins/rah_external_output",
-	"license": "GPL-2.0",
-	"type": "textpattern-plugin",
-	"authors": [
-		{
-			"name": "Jukka Svahn",
-			"homepage": "http://rahforum.biz",
-			"role": "Developer"
-		}
-	],
-	"support": {
-		"issues": "https://github.com/gocom/rah_external_output/issues",
-		"forum": "http://forum.textpattern.com/viewtopic.php?id=30664",
-		"source": "https://github.com/gocom/rah_external_output"
-	},
-	"require": {
-		"php": ">=5.2.0",
-		"textpattern/lock": ">=4.4.1",
-		"textpattern/installer": "*"
-	}
+    "name": "rah/rah_external_output",
+    "description": "Content-type snippets plugin for Textpattern",
+    "keywords": ["textpattern", "plugin", "content", "snippets", "partials"],
+    "homepage": "http://rahforum.biz/plugins/rah_external_output",
+    "license": "GPL-2.0",
+    "type": "textpattern-plugin",
+    "authors": [
+        {
+            "name": "Jukka Svahn",
+            "homepage": "http://rahforum.biz",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/gocom/rah_external_output/issues",
+        "forum": "http://forum.textpattern.com/viewtopic.php?id=30664",
+        "source": "https://github.com/gocom/rah_external_output"
+    },
+    "require": {
+        "php": ">=5.2.0",
+        "textpattern/lock": ">=4.4.1",
+        "textpattern/installer": "*"
+    }
 }
