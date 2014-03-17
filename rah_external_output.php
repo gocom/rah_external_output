@@ -83,7 +83,7 @@ class Rah_External_Output
 
         if (!gps('rah_external_output') && $name = basename($pretext['request_uri']))
         {
-        	$_GET['rah_external_output'] = $name;
+            $_GET['rah_external_output'] = $name;
             $this->getSnippet();
         }
     }
