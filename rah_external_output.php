@@ -26,16 +26,13 @@ class Rah_External_Output
             '1 = 1'
         );
 
-        if ($rs)
-        {
-            foreach ($rs as $a)
-            {
+        if ($rs) {
+            foreach ($rs as $a) {
                 extract($a);
 
                 $name = ($allow != 'Yes' ? '_' : '') . 'rah_eo_'.$name;
 
-                if (safe_count('txp_form', "name='".doSlash($name)."'"))
-                {
+                if (safe_count('txp_form', "name = '".doSlash($name)."'")) {
                     continue;
                 }
 
@@ -81,8 +78,7 @@ class Rah_External_Output
     {
         global $pretext;
 
-        if (!gps('rah_external_output') && $name = basename($pretext['request_uri']))
-        {
+        if (!gps('rah_external_output') && $name = basename($pretext['request_uri'])) {
             $_GET['rah_external_output'] = $name;
             $this->getSnippet();
         }
@@ -98,21 +94,18 @@ class Rah_External_Output
 
         $name = gps('rah_external_output');
 
-        if ($name === '' || !is_string($name))
-        {
+        if ($name === '' || !is_string($name)) {
             return;
         }
 
         $r = safe_field(
             'Form', 
             'txp_form', 
-            "name='".doSlash('rah_eo_'.$name)."'"
+            "name = '".doSlash('rah_eo_'.$name)."'"
         );
 
-        if ($r === false)
-        {
-            if ($txp_error_code != 404)
-            {
+        if ($r === false) {
+            if ($txp_error_code != 404) {
                 txp_die(gTxt('404_not_found'), 404);
             }
 
@@ -139,10 +132,8 @@ class Rah_External_Output
 
         $lines = explode(n, $r);
 
-        foreach ($lines as $line)
-        {    
-            if (strpos($line, ';') !== 0)
-            {
+        foreach ($lines as $line) {
+            if (strpos($line, ';') !== 0) {
                 break;
             }
 
@@ -153,8 +144,7 @@ class Rah_External_Output
         echo parse(parse(implode(n, $lines)));
         restore_error_handler();
 
-        if ($ext == 'html' && get_pref('production_status') == 'debug')
-        {
+        if ($ext == 'html' && get_pref('production_status') == 'debug') {
             echo 
                 n.comment('Runtime: '.substr(getmicrotime() - $microstart, 0, 6)).
                 n.comment('Query time: '.sprintf('%02.6f', $qtime)).
@@ -181,8 +171,7 @@ class Rah_External_Output
             {
                 var input = $('input[name="name"]');
 
-                if (input.val().indexOf('rah_eo_') !== 0)
-                {
+                if (input.val().indexOf('rah_eo_') !== 0) {
                     return;
                 }
 
@@ -190,12 +179,9 @@ class Rah_External_Output
                 var link = $('<a href="#">{$view}</a>').attr('href', uri);
                 var actions = $('.txp-actions');
 
-                if (actions.length)
-                {
+                if (actions.length) {
                     actions.append(' ').append(link);
-                }
-                else
-                {
+                } else {
                     input.after(link).after(' ');
                 }
 
