@@ -1,6 +1,6 @@
 h1. rah_external_output
 
-"Project page":http://rahforum.biz/plugins/rah_external_output | "Packagist":https://packagist.org/packages/rah/rah_external_output | "Twitter":http://twitter.com/gocom | "GitHub":https://github.com/gocom/rah_external_output | "Support forum":http://forum.textpattern.com/viewtopic.php?id=30664 | "Donate":http://rahforum.biz/donate/rah_external_output
+"Downloads":https://github.com/gocom/rah_external_output/releases | "Packagist":https://packagist.org/packages/rah/rah_external_output | "Twitter":http://twitter.com/gocom | "GitHub":https://github.com/gocom/rah_external_output | "Support forum":http://forum.textpattern.com/viewtopic.php?id=30664 | "Donate":http://rahforum.biz/donate/rah_external_output
 
 Rah_external_output is a "Textpattern":http://textpattern.com plugin that can be used create custom content-type snippets. These snippets can be requested with a publicly accessible URL, and used as pages or to provide site's content over in form of JSON or XML to JavaScript or across domains.
 
@@ -23,15 +23,13 @@ Rah_external_output's minimum requirements:
 * Textpattern 4.4.1 or newer.
 * PHP 5.2.0 or newer.
 
-h2. Installing
+h2. Install
 
-The general behavior stands when it comes to installing rah_external_ouput. No extra steps or configuration that variates from normal is needed.
+Using "Composer":http://getcomposer.org:
 
-# Download plugin installation file and copy its contents to clipboard.
-# Navigate to "Plugins":http://textpattern.net/wiki/index.php?title=Plugins panel and paste the copied code into the _Install plugin_ field, and click *Upload*.
-# You will be shown a preview of the plugin and its documentation. Click *Install* at the bottom of the page.
-# You will be returned to the plugin list when the plugin has been installed. Now activate the plugin by clicking its *No* link, which toggles the status to *Yes* and actives it.
-# The plugin is now installed and activated. All done.
+bc. $ composer require rah_external_output:*
+
+Or "download a plugin package":https://github.com/gocom/rah_external_output/releases.
 
 h2. Basics
 
