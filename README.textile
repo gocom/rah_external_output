@@ -134,6 +134,10 @@ $rah_external_output_mime['svg'] = 'image/svg+xml';
 
 h2. Changelog
 
+h3. Version 1.1.0 - upcoming
+
+* Added: Clean URL support. Snippet can now be requested by its name, e.g. @http://example.com/snippet@.
+
 h3. Version 1.0.4 - 2013/05/07
 
 * Changed: The installer doesn't use embedded version numbers. The only purpose for the installer is to handle migrations anyway.
