@@ -29,7 +29,7 @@ Using "Composer":http://getcomposer.org:
 
 bc. $ composer require rah_external_output:*
 
-Or "download a plugin package":https://github.com/gocom/rah_external_output/releases.
+Or "download":https://github.com/gocom/rah_external_output/releases a plugin package.
 
 h2. Basics
 
