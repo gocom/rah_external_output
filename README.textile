@@ -27,7 +27,7 @@ h2. Install
 
 Using "Composer":http://getcomposer.org:
 
-bc. $ composer require rah_external_output:*
+bc. $ composer require rah/rah_external_output:*
 
 Or "download":https://github.com/gocom/rah_external_output/releases a plugin package.
 
