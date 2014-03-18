@@ -132,7 +132,7 @@ $rah_external_output_mime['svg'] = 'image/svg+xml';
 
 h2. Changelog
 
-h3. Version 1.1.0 - upcoming
+h3. Version 1.1.0 - 2014/03/18
 
 * Added: Clean URL support. Snippet can now be requested by its name, e.g. @http://example.com/snippet@.
 
